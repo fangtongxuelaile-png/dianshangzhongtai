@@ -7,9 +7,15 @@
       "display_name": "管理员"
     },
     "viewer": {
-      "password_hash": "8e6b782eac3016ec711ec7193bdc5c529ab3accac774929332d08fe79adf2b36",
+      "password_hash": "b2a176ca0a6b197d1dd16f0d1b5d447d591a9e4fde84c8d0acecedd6d4eaa6d9",
       "role": "viewer",
       "display_name": "浏览者",
+      "expire_date": "2027-12-31"
+    },
+    "xiaotun": {
+      "password_hash": "a2dc3cf9e5cad5a9d9cc1b750ea8c971e0eb40f48187ec545959527fb85f4bbd",
+      "role": "viewer",
+      "display_name": "小豚用户",
       "expire_date": "2027-12-31"
     }
   }

@@ -33,8 +33,12 @@ docker run -p 8501:8501 xiaotun-bi
 ```
 
 ## 登录
-- 用户名：`gwell`
-- 密码：`xiaotun666`
+| 账号 | 密码 | 角色 | 过期 |
+|------|------|------|------|
+| `gwell` | `xiaotun666` | 管理员（admin） | 永久 |
+| `xiaotun` | `xiaotun2026` | 浏览者（viewer） | 2027-12-31 |
+
+> 部署在 Streamlit Cloud：https://xiaotunbi.streamlit.app
 
 ## 数据源
 支持上传 Excel 数据源，包含：
