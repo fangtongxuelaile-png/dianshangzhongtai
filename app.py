@@ -370,13 +370,173 @@ _SALT = 'xiaotun_bi_2026_salt'
 # session state 已在 set_page_config 后预初始化，此处无需重复
 
 if not st.session_state.authenticated:
+    # ── 登录页 CSS（暗金玻璃态卡片，始终深色，不随主题切换） ──
+    LOGIN_CSS = '''
+<style>
+/* 关闭登录页 block 间距，让头部/表单/底部严丝合缝 */
+section.main [data-testid="stVerticalBlock"] { gap: 0 !important; }
+
+/* === 卡片头部 === */
+.login-header-earth {
+    background: linear-gradient(160deg,rgba(8,14,28,.92) 0%,rgba(6,10,22,.96) 100%);
+    backdrop-filter: blur(32px) saturate(1.8);
+    -webkit-backdrop-filter: blur(32px) saturate(1.8);
+    border: 1px solid rgba(212,175,55,.25);
+    border-bottom: 1px solid rgba(212,175,55,.1);
+    border-radius: 24px 24px 0 0;
+    padding: 32px 44px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 1.5rem;
+}
+/* 顶部金线 */
+.login-header-earth::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg,transparent 0%,rgba(212,175,55,.7) 30%,rgba(255,220,100,1) 50%,rgba(212,175,55,.7) 70%,transparent 100%);
+    z-index: 1;
+}
+/* 扫光动效 */
+.login-header-earth::after {
+    content: ''; position: absolute; top: -60%; left: -60%; width: 60%; height: 220%;
+    background: linear-gradient(105deg,transparent 40%,rgba(212,175,55,.06) 50%,transparent 60%);
+    animation: loginSweep 4s ease-in-out infinite;
+    pointer-events: none; z-index: 0;
+}
+@keyframes loginSweep { 0%{left:-60%} 60%,100%{left:150%} }
+
+.login-logo-wrap { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:12px; }
+.login-logo-icon {
+    width:48px; height:48px; border-radius:14px;
+    background:linear-gradient(135deg,rgba(212,175,55,.2),rgba(212,175,55,.05));
+    border:1px solid rgba(212,175,55,.3);
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px;
+    box-shadow:0 4px 16px rgba(212,175,55,.15),inset 0 1px 0 rgba(255,255,255,.08);
+}
+.login-brand { font-size:17px; font-weight:900; color:#D4AF37; letter-spacing:.06em; line-height:1.2; }
+.login-brand-en { font-size:10px; color:rgba(212,175,55,.5); letter-spacing:.14em; font-weight:600; text-transform:uppercase; }
+.login-version-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:4px 12px; border-radius:999px;
+    background:rgba(212,175,55,.08); border:1px solid rgba(212,175,55,.18);
+    font-size:11px; color:rgba(212,175,55,.75); font-weight:600; letter-spacing:.04em;
+}
+.login-version-badge::before {
+    content:''; width:6px; height:6px; border-radius:50%;
+    background:#30D158; box-shadow:0 0 6px #30D158;
+    animation:loginPulse 2s ease-in-out infinite;
+}
+@keyframes loginPulse { 0%,100%{opacity:1;box-shadow:0 0 6px #30D158} 50%{opacity:.5;box-shadow:0 0 12px #30D158} }
+
+/* === 表单区（Streamlit form） === */
+div[data-testid="stForm"] {
+    background: linear-gradient(160deg,rgba(8,14,28,.92) 0%,rgba(6,10,22,.96) 100%) !important;
+    backdrop-filter: blur(32px) saturate(1.8);
+    -webkit-backdrop-filter: blur(32px) saturate(1.8);
+    border: 1px solid rgba(212,175,55,.25) !important;
+    border-top: none !important;
+    border-radius: 0 !important;
+    padding: 24px 40px 20px !important;
+    box-shadow: 0 32px 80px rgba(0,0,0,.7);
+}
+/* 输入框标签 */
+div[data-testid="stForm"] .stTextInput > label {
+    font-size: 11px !important;
+    color: rgba(212,175,55,.7) !important;
+    font-weight: 700 !important;
+    letter-spacing: .06em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 7px !important;
+}
+/* 输入框 */
+div[data-testid="stForm"] .stTextInput input {
+    background: rgba(255,255,255,.05) !important;
+    border: 1px solid rgba(212,175,55,.18) !important;
+    border-radius: 10px !important;
+    padding: 12px 14px !important;
+    color: #fff !important;
+    font-size: 14px !important;
+    transition: all .25s !important;
+}
+div[data-testid="stForm"] .stTextInput input::placeholder {
+    color: rgba(255,255,255,.25) !important;
+}
+div[data-testid="stForm"] .stTextInput input:focus {
+    background: rgba(212,175,55,.06) !important;
+    border-color: rgba(212,175,55,.55) !important;
+    box-shadow: 0 0 0 3px rgba(212,175,55,.1),0 0 20px rgba(212,175,55,.08) !important;
+    outline: none !important;
+}
+/* 登录按钮 */
+div[data-testid="stForm"] button[data-testid="stBaseButton-primary"] {
+    background: linear-gradient(135deg,#C9A227 0%,#F0D060 45%,#C9A227 100%) !important;
+    color: #0a0e1a !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 14px 0 !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    letter-spacing: .08em !important;
+    box-shadow: 0 4px 24px rgba(212,175,55,.35),inset 0 1px 0 rgba(255,255,255,.25) !important;
+    transition: all .3s !important;
+    margin-top: 4px !important;
+}
+div[data-testid="stForm"] button[data-testid="stBaseButton-primary"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 36px rgba(212,175,55,.5),inset 0 1px 0 rgba(255,255,255,.3) !important;
+    background: linear-gradient(135deg,#D4B82E 0%,#FFE066 45%,#D4B82E 100%) !important;
+}
+div[data-testid="stForm"] button[data-testid="stBaseButton-primary"] p,
+div[data-testid="stForm"] button[data-testid="stBaseButton-primary"] span {
+    color: #0a0e1a !important;
+}
+/* 错误提示 */
+div[data-testid="stAlert"] {
+    background: rgba(255,69,58,.08) !important;
+    border: 1px solid rgba(255,69,58,.15) !important;
+    border-radius: 8px !important;
+    color: #FF8A8A !important;
+}
+div[data-testid="stAlert"] [data-testid="stAlertContent"] p { color: #FF8A8A !important; }
+div[data-testid="stAlert"] svg { color: #FF8A8A !important; }
+
+/* === 卡片底部 === */
+.login-footer-earth {
+    background: linear-gradient(160deg,rgba(8,14,28,.92) 0%,rgba(6,10,22,.96) 100%);
+    border: 1px solid rgba(212,175,55,.25);
+    border-top: 1px solid rgba(255,255,255,.05);
+    border-radius: 0 0 24px 24px;
+    padding: 14px 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.login-footer-hint { font-size: 10px; color: rgba(255,255,255,.2); letter-spacing: .04em; }
+.login-footer-tags { display: flex; gap: 6px; }
+.login-tag {
+    font-size: 9px; padding: 2px 8px; border-radius: 4px;
+    font-weight: 700; letter-spacing: .06em;
+    background: rgba(255,255,255,.04); color: rgba(255,255,255,.25);
+    border: 1px solid rgba(255,255,255,.07);
+}
+</style>
+'''
+    st.markdown(LOGIN_CSS, unsafe_allow_html=True)
+
     col_center = st.columns([1, 2, 1])
     with col_center[1]:
-        st.markdown('''<div class="hero"><div><span class="badge">影锋BI风格</span><span class="badge">全域电商经营驾驶舱</span></div><h1 class="hero-title">小豚当家销售经营BI看板</h1><div class="hero-sub">请输入账号密码登录</div></div>''', unsafe_allow_html=True)
+        # 登录卡片头部（Logo + 品牌 + 版本徽章）
+        st.markdown('''<div class="login-header-earth">
+<div class="login-logo-wrap"><div class="login-logo-icon">🎯</div><div><div class="login-brand">小豚当家</div><div class="login-brand-en">XiaoTun Smart Home</div></div></div>
+<div class="login-version-badge">销售经营BI看板 &nbsp;·&nbsp; V1.0</div>
+</div>''', unsafe_allow_html=True)
+
         with st.form('login_form'):
-            _lu = st.text_input('用户名')
-            _lp = st.text_input('密码', type='password')
-            _submitted = st.form_submit_button('登录', use_container_width=True)
+            _lu = st.text_input('ACCOUNT  账号', placeholder='输入登录账号')
+            _lp = st.text_input('PASSWORD  密码', type='password', placeholder='输入登录密码')
+            _submitted = st.form_submit_button('登 录 系 统', use_container_width=True)
             if _submitted:
                 try:
                     with open(_USERS_FILE, 'r', encoding='utf-8') as _f:
@@ -402,6 +562,12 @@ if not st.session_state.authenticated:
                         st.session_state.role = _user_info.get('role', 'viewer')
                         st.rerun()
                 st.error('❌ 用户名或密码错误，或账号未授权')
+
+        # 登录卡片底部（版权 + 标签）
+        st.markdown('''<div class="login-footer-earth">
+<div class="login-footer-hint">© 2026 小豚当家 · 销售经营BI</div>
+<div class="login-footer-tags"><span class="login-tag">SECURE</span><span class="login-tag">INTERNAL</span></div>
+</div>''', unsafe_allow_html=True)
     st.stop()
 
 st.markdown('''<div class="hero"><div><span class="badge">影锋BI风格</span><span class="badge">全域电商经营驾驶舱</span><span class="badge">上传即更新</span></div><h1 class="hero-title">小豚当家销售经营BI看板</h1><div class="hero-sub">经营总览 · 时间段对比 · 趋势分析 · 智能诊断, 一页完成日常复盘。</div></div>''', unsafe_allow_html=True)
