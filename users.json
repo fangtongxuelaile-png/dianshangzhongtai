@@ -17,6 +17,11 @@
       "role": "viewer",
       "display_name": "小豚用户",
       "expire_date": "2027-12-31"
+    },
+    "leoxiaotun": {
+      "password_hash": "2111d219e296ee2f7a206e85f9ef95f213c3a03b0a03c432f1bc3f765698d5b3",
+      "role": "admin",
+      "display_name": "朝隆"
     }
   }
 }
