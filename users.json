@@ -3,8 +3,9 @@
   "users": {
     "gwell": {
       "password_hash": "b9d059f0d2d7f6935136a15ca328be917e3b24dc009ba56e5a3384cf282d4b02",
-      "role": "admin",
-      "display_name": "管理员"
+      "role": "viewer",
+      "display_name": "浏览者",
+      "expire_date": "2027-12-31"
     },
     "viewer": {
       "password_hash": "b2a176ca0a6b197d1dd16f0d1b5d447d591a9e4fde84c8d0acecedd6d4eaa6d9",
