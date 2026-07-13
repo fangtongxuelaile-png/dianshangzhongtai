@@ -211,69 +211,69 @@ except Exception:
 
 CSS = '''
 <style>
-:root {--navy:#07111f;--blue:#1d4ed8;--cyan:#06b6d4;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--muted:#64748b;}
+:root {--gold:#D4AF37;--gold-dark:#B8960F;--cyan:#06b6d4;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--muted:#8e8e93;--bg:#1a1a1a;--bg-card:#252525;--bg-hover:#2a2a2a;--border:#3a3a3a;--text:#e5e5e5;--text-dim:#8e8e93;}
 .block-container {padding-top: 1.1rem; padding-bottom: 2rem; max-width: 1800px;}
-[data-testid="stSidebar"] {background: #081324;}
-[data-testid="stSidebar"] * {color: #e5f0ff;}
-[data-testid="stFileUploader"] {border: 1px dashed rgba(255,255,255,.35); border-radius: 16px; padding: 8px;}
-.hero {border-radius: 28px; padding: 24px 28px; margin-bottom: 16px; color: white; background: radial-gradient(circle at 12% 18%, rgba(35,116,255,.75), transparent 30%), linear-gradient(135deg,#06101f 0%, #0b2242 52%, #123f7f 100%); box-shadow: 0 18px 40px rgba(15,23,42,.18);}
-.hero-title {font-size: 31px; font-weight: 900; margin: 0; letter-spacing: .5px;}
-.hero-sub {color: #cfe3ff; margin-top: 8px; font-size: 14px;}
-.badge {display:inline-block; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22); margin-right:8px; font-size:12px;}
-.section-title {font-size: 18px; font-weight: 800; margin: 16px 0 8px; color: #0f172a;}
-[data-testid="stMetric"] {background: linear-gradient(180deg,#ffffff,#f8fbff); border: 1px solid #e8eef8; padding: 15px 16px; border-radius: 20px; box-shadow: 0 12px 28px rgba(15,23,42,.07);}
-[data-testid="stMetricLabel"] {color:#64748b;}
-[data-testid="stMetricValue"] {font-size: 25px; font-weight: 900;}
-.card-note {font-size: 13px; color:#64748b; margin-top:-4px;}
+[data-testid="stSidebar"] {background: #0d0d0d;}
+[data-testid="stSidebar"] * {color: #e5e5e5;}
+[data-testid="stFileUploader"] {border: 1px dashed rgba(212,175,55,.35); border-radius: 16px; padding: 8px;}
+.hero {border-radius: 28px; padding: 24px 28px; margin-bottom: 16px; color: #f5f5f5; background: radial-gradient(circle at 12% 18%, rgba(212,175,55,.25), transparent 30%), linear-gradient(135deg,#0d0d0d 0%, #1a1a1a 52%, #2a2520 100%); box-shadow: 0 18px 40px rgba(0,0,0,.4); border: 1px solid rgba(212,175,55,.15);}
+.hero-title {font-size: 31px; font-weight: 900; margin: 0; letter-spacing: .5px; color: #D4AF37;}
+.hero-sub {color: #b0b0b0; margin-top: 8px; font-size: 14px;}
+.badge {display:inline-block; padding: 5px 10px; border-radius: 999px; background: rgba(212,175,55,.12); border:1px solid rgba(212,175,55,.3); margin-right:8px; font-size:12px; color:#D4AF37;}
+.section-title {font-size: 18px; font-weight: 800; margin: 16px 0 8px; color: #D4AF37;}
+[data-testid="stMetric"] {background: linear-gradient(180deg,#252525,#1e1e1e); border: 1px solid #3a3a3a; padding: 15px 16px; border-radius: 20px; box-shadow: 0 12px 28px rgba(0,0,0,.3);}
+[data-testid="stMetricLabel"] {color:#8e8e93;}
+[data-testid="stMetricValue"] {font-size: 25px; font-weight: 900; color: #f5f5f5;}
+.card-note {font-size: 13px; color:#8e8e93; margin-top:-4px;}
 .stTabs [data-baseweb="tab-list"] {gap: 8px;}
-.stTabs [data-baseweb="tab"] {background:#f1f5f9; border-radius:999px; padding: 8px 16px;}
-.stTabs [aria-selected="true"] {background:#dbeafe; color:#1d4ed8;}
-.comp-card {background:#f0f6ff; border:1px solid #c7d9f5; border-radius:16px; padding:16px; margin-bottom:8px;}
-.comp-period {font-size:13px; color:#64748b; margin-bottom:4px;}
-.comp-value {font-size:22px; font-weight:900; color:#1d4ed8;}
+.stTabs [data-baseweb="tab"] {background:#252525; border-radius:999px; padding: 8px 16px; color: #b0b0b0;}
+.stTabs [aria-selected="true"] {background:rgba(212,175,55,.15); color:#D4AF37;}
+.comp-card {background:#1e1e1e; border:1px solid #3a3a3a; border-radius:16px; padding:16px; margin-bottom:8px;}
+.comp-period {font-size:13px; color:#8e8e93; margin-bottom:4px;}
+.comp-value {font-size:22px; font-weight:900; color:#D4AF37;}
 .delta-up {color:#22c55e; font-weight:700;}
 .delta-down {color:#ef4444; font-weight:700;}
 .diag-card {border-radius:16px; padding:16px; margin-bottom:12px;}
-.diag-warn {background:#fff7ed; border:1px solid #fdba74;}
-.diag-ok {background:#f0fdf4; border:1px solid #86efac;}
-.diag-danger {background:#fef2f2; border:1px solid #fca5a5;}
-.diag-title {font-weight:800; font-size:15px; margin-bottom:4px;}
-.diag-body {font-size:13px; color:#374151; line-height:1.7;}
+.diag-warn {background:rgba(245,158,11,.1); border:1px solid rgba(245,158,11,.3);}
+.diag-ok {background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.3);}
+.diag-danger {background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.3);}
+.diag-title {font-weight:800; font-size:15px; margin-bottom:4px; color: #f5f5f5;}
+.diag-body {font-size:13px; color:#b0b0b0; line-height:1.7;}
 .drill-table {width:100%; border-collapse:collapse; font-size:12.5px; margin-top:8px;}
-.drill-table th {background:#f0f6ff; font-weight:700; text-align:left; padding:6px 10px; border-bottom:2px solid #1d4ed8;}
-.drill-table td {padding:5px 10px; border-bottom:1px solid #e5e7eb; white-space:nowrap; overflow:hidden; max-width:200px;text-overflow:ellipsis;}
-.drill-table tr:hover {background:#f8fbff;}
+.drill-table th {background:rgba(212,175,55,.1); font-weight:700; text-align:left; padding:6px 10px; border-bottom:2px solid #D4AF37; color:#D4AF37;}
+.drill-table td {padding:5px 10px; border-bottom:1px solid #3a3a3a; white-space:nowrap; overflow:hidden; max-width:200px;text-overflow:ellipsis; color:#e5e5e5;}
+.drill-table tr:hover {background:#252525;}
 .action-tag {display:inline-block; padding:3px 10px; border-radius:999px; font-size:11px; font-weight:600; margin:2px 3px 2px 0;}
-.tag-p0 {background:#fee2e2;color:#dc2626;border:1px solid #fecaca;}
-.tag-p1 {background:#fff7ed;color:#ea580c;border:1px solid #fed7aa;}
-.tag-p2 {background:#fefce8;color:#ca8a04;border:1px solid #fde68a;}
-.tag-p3 {background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;}
+.tag-p0 {background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.3);}
+.tag-p1 {background:rgba(249,115,22,.15);color:#f97316;border:1px solid rgba(249,115,22,.3);}
+.tag-p2 {background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3);}
+.tag-p3 {background:rgba(34,197,94,.15);color:#22c55e;border:1px solid rgba(34,197,94,.3);}
 /* 自定义HTML表格样式 */
-.styled-table-wrap {overflow-x:auto; border-radius:12px; border:1px solid #e2e8f0; margin-top:6px;}
+.styled-table-wrap {overflow-x:auto; border-radius:12px; border:1px solid #3a3a3a; margin-top:6px;}
 .styled-table {width:100%; border-collapse:collapse; font-size:12.5px;}
-.styled-table thead th {background:#1e293b; color:#fff; font-weight:700; text-align:left; padding:9px 10px; white-space:nowrap; position:sticky; top:0; z-index:1;}
-.styled-table tbody td {padding:7px 10px; border-bottom:1px solid #e5e7eb; vertical-align:middle;}
-.styled-table tbody tr:hover {background:#eff6ff;}
+.styled-table thead th {background:#D4AF37; color:#1a1a1a; font-weight:700; text-align:left; padding:9px 10px; white-space:nowrap; position:sticky; top:0; z-index:1;}
+.styled-table tbody td {padding:7px 10px; border-bottom:1px solid #3a3a3a; vertical-align:middle; color:#e5e5e5;}
+.styled-table tbody tr:hover {background:#252525;}
 .styled-table td span {white-space:normal;}
 /* 侧边栏文件上传区 & 按钮文字修复（深色背景下看不清） */
-[data-testid="stSidebar"] [data-testid="stFileUploader"] * {color: #1e293b !important;}
-[data-testid="stSidebar"] [data-testid="stFileUploader"] {background: #f8fafc; border: 1px dashed #94a3b8 !important; border-radius: 12px;}
-[data-testid="stSidebar"] [data-testid="stFileUploader"] small {color: #64748b !important;}
+[data-testid="stSidebar"] [data-testid="stFileUploader"] * {color: #e5e5e5 !important;}
+[data-testid="stSidebar"] [data-testid="stFileUploader"] {background: #1e1e1e; border: 1px dashed rgba(212,175,55,.4) !important; border-radius: 12px;}
+[data-testid="stSidebar"] [data-testid="stFileUploader"] small {color: #8e8e93 !important;}
 /* 隐藏英文拖拽提示，用CSS伪元素覆盖为中文 */
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span[data-testid="stFileUploaderDropzoneInstructions"] > div > span:first-child {font-size: 0;}
-[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span[data-testid="stFileUploaderDropzoneInstructions"] > div > span:first-child::after {content: "拖拽文件到此处"; font-size: 14px; color: #1d4ed8;}
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span[data-testid="stFileUploaderDropzoneInstructions"] > div > span:first-child::after {content: "拖拽文件到此处"; font-size: 14px; color: #D4AF37;}
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] small {font-size: 0 !important;}
-[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] small::after {content: "每个文件限 500MB • XLSX"; font-size: 12px; color: #64748b;}
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] small::after {content: "每个文件限 500MB • XLSX"; font-size: 12px; color: #8e8e93;}
 /* Browse files 按钮汉化 */
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] button[data-testid="stBaseButton-secondary"] {font-size: 0 !important;}
-[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] button[data-testid="stBaseButton-secondary"]::after {content: "选择文件"; font-size: 14px; color: #0f172a !important;}
-/* 同步按钮和退出登录按钮 - 加强选择器覆盖 */
-[data-testid="stSidebar"] button {color: #0f172a !important; font-weight: 600;}
-[data-testid="stSidebar"] button p {color: #0f172a !important;}
-[data-testid="stSidebar"] button span {color: #0f172a !important;}
-[data-testid="stSidebar"] .stButton button {background: #dde3f0 !important; color: #0f172a !important; border: 1px solid #b8c4d9 !important;}
-[data-testid="stSidebar"] .stButton button:hover {background: #c8d2e8 !important;}
-[data-testid="stSidebar"] .stButton button * {color: #0f172a !important;}
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] button[data-testid="stBaseButton-secondary"]::after {content: "选择文件"; font-size: 14px; color: #D4AF37 !important;}
+/* 同步按钮和退出登录按钮 - 暗金风格 */
+[data-testid="stSidebar"] button {color: #e5e5e5 !important; font-weight: 600;}
+[data-testid="stSidebar"] button p {color: #e5e5e5 !important;}
+[data-testid="stSidebar"] button span {color: #e5e5e5 !important;}
+[data-testid="stSidebar"] .stButton button {background: #252525 !important; color: #D4AF37 !important; border: 1px solid #D4AF37 !important;}
+[data-testid="stSidebar"] .stButton button:hover {background: #2a2520 !important; border-color: #B8960F !important;}
+[data-testid="stSidebar"] .stButton button * {color: #D4AF37 !important;}
 </style>
 '''
 st.markdown(CSS, unsafe_allow_html=True)
@@ -1409,7 +1409,7 @@ var ov=document.getElementById(id+'_fs');
 if(ov){ov.style.display='flex';return;}
 ov=document.createElement('div');
 ov.id=id+'_fs';
-ov.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-shrink:0;padding:0 8px;"><span style="color:#fff;font-size:18px;font-weight:700;">'+title+'</span><button onclick="this.parentElement.parentElement.style.display=\\'none\\'" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:6px 18px;cursor:pointer;font-size:14px;font-weight:600;">✕ 关闭</button></div><div style="flex:1;overflow:auto;background:#fff;border-radius:8px;min-height:0;">'+wrap.innerHTML+'</div>';
+ov.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-shrink:0;padding:0 8px;"><span style="color:#fff;font-size:18px;font-weight:700;">'+title+'</span><button onclick="this.parentElement.parentElement.style.display=\\'none\\'" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:6px 18px;cursor:pointer;font-size:14px;font-weight:600;">✕ 关闭</button></div><div style="flex:1;overflow:auto;background:#1a1a1a;border-radius:8px;min-height:0;">'+wrap.innerHTML+'</div>';
 ov.style.cssText='display:flex;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.82);z-index:2147483647;flex-direction:column;padding:20px;box-sizing:border-box;';
 document.body.appendChild(ov);
 };
@@ -1642,7 +1642,7 @@ def _render_html_table(rows, headers, keys, align='center', height=520, title=''
         fullscreen_btn = (
             f'<button class="_fs-btn" data-fs-id="{tbl_id}" data-fs-title="{title}" '
             f'style="float:right;margin-bottom:4px;padding:3px 10px;font-size:12px;'
-            f'background:#1d4ed8;color:#fff;border:none;border-radius:4px;cursor:pointer;">⛶ 全屏</button>'
+            f'background:#D4AF37;color:#fff;border:none;border-radius:4px;cursor:pointer;">⛶ 全屏</button>'
         )
     th = ''.join(f'<th style="text-align:{align};white-space:nowrap">{h}</th>' for h in headers)
     body = ''
@@ -1652,7 +1652,7 @@ def _render_html_table(rows, headers, keys, align='center', height=520, title=''
         tr = ''
         for k in keys:
             v = r.get(k, '')
-            style = f"text-align:{align};padding:7px 10px;border-bottom:1px solid #e5e7eb;white-space:nowrap;{row_style}"
+            style = f"text-align:{align};padding:7px 10px;border-bottom:1px solid #3a3a3a;white-space:nowrap;{row_style}"
             if k in _YOY_COLS:
                 try:
                     nv = float(str(v).replace('%','').replace('+',''))
@@ -1672,7 +1672,7 @@ def _render_html_table(rows, headers, keys, align='center', height=520, title=''
 def _html_table(rows, col_widths=None, height=None):
     """Render dict list as styled HTML table, supports HTML tags inside cells"""
     if not rows:
-        return '<div style="color:#94a3b8;padding:10px;">暂无数据</div>'
+        return '<div style="color:#8e8e93;padding:10px;">暂无数据</div>'
     cols = list(rows[0].keys())
     w = col_widths or {}
     h = f' style="max-height:{height}px;overflow-y:auto;"' if height else ''
@@ -1683,7 +1683,7 @@ def _html_table(rows, col_widths=None, height=None):
         html += f'<th{st}>{c}</th>'
     html += '</tr></thead><tbody>'
     for i, r in enumerate(rows):
-        bg = '#fafafa' if i % 2 == 0 else 'white'
+        bg = '#1e1e1e' if i % 2 == 0 else '#252525'
         html += f'<tr style="background:{bg}">'
         for c in cols:
             val = r.get(c, '')
@@ -2311,7 +2311,7 @@ def _generate_mckinsey_ppt(**kwargs):
         """matplotlib → PNG bytes（白底，高密度）"""
         buf = io.BytesIO()
         fig.savefig(buf, format='png', dpi=180, bbox_inches='tight',
-                     facecolor='white', edgecolor='none')
+                     facecolor='#252525', edgecolor='none')
         buf.seek(0); plt.close(fig)
         return buf
 
@@ -2330,13 +2330,13 @@ def _generate_mckinsey_ppt(**kwargs):
         if cur_gmv > 0:
             daily_avg = cur_gmv / max(len(days), 1)
             trend = [daily_avg * (0.85 + 0.05 * i) * (0.95 + np.random.random() * 0.1) for i in range(len(days))]
-            ax.fill_between(range(len(days)), [t*0.92 for t in trend], trend, alpha=0.2, color='#00336B')
-            ax.plot(range(len(days)), trend, color='#00336B', linewidth=2, marker='o', markersize=4)
+            ax.fill_between(range(len(days)), [t*0.92 for t in trend], trend, alpha=0.2, color='#D4AF37')
+            ax.plot(range(len(days)), trend, color='#D4AF37', linewidth=2, marker='o', markersize=4)
             ax.set_xticks(range(len(days)))
             ax.set_xticklabels(days, fontsize=7)
             ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'{x/10000:.0f}万' if x >= 10000 else f'{x:.0f}'))
             ax.tick_params(axis='y', labelsize=7)
-            ax.set_title(f'本期GMV日趋势  |  总GMV ¥{cur_gmv:,.0f}  |  环比 {_pct(gmv_g)}', fontsize=9, color='#00336B', fontweight='bold')
+            ax.set_title(f'本期GMV日趋势  |  总GMV ¥{cur_gmv:,.0f}  |  环比 {_pct(gmv_g)}', fontsize=9, color='#D4AF37', fontweight='bold')
             ax.spines['top'].set_visible(False); ax.spines['right'].set_visible(False)
             ax.spines['left'].set_color('#E0E0E0'); ax.spines['bottom'].set_color('#E0E0E0')
             ax.grid(axis='y', alpha=0.3, color='#E0E0E0')
@@ -2357,9 +2357,9 @@ def _generate_mckinsey_ppt(**kwargs):
             values = [v for _, v in ch_data]
             colors = ['#00336B', '#005B96', '#007A33', '#E6A817', '#CC3333', '#94A3B8']
             wedges, texts = ax.pie(values, labels=None, colors=colors[:len(ch_data)],
-                                   startangle=90, wedgeprops=dict(width=0.35, edgecolor='white'))
+                                   startangle=90, wedgeprops=dict(width=0.35, edgecolor='#252525'))
             ax.legend(wedges, labels, loc='center left', bbox_to_anchor=(1, 0.5), fontsize=7, frameon=False)
-            ax.set_title('渠道GMV占比', fontsize=9, color='#00336B', fontweight='bold')
+            ax.set_title('渠道GMV占比', fontsize=9, color='#D4AF37', fontweight='bold')
         return fig
 
     # ═══════════════ 图表3: Shapley归因瀑布图 ═══════════════
@@ -2401,13 +2401,13 @@ def _generate_mckinsey_ppt(**kwargs):
         for i, (bar, v) in enumerate(zip(bars, vals)):
             if i == 0 or i == 4:
                 ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + bottoms[i] + max(vals)*0.03,
-                        f'¥{v:,.0f}', ha='center', fontsize=7, fontweight='bold', color='#00336B')
+                        f'¥{v:,.0f}', ha='center', fontsize=7, fontweight='bold', color='#D4AF37')
             else:
                 y_pos = bar.get_height() + bottoms[i] + max(vals)*0.03 if v > 0 else bottoms[i] - max(vals)*0.03
                 ax.text(bar.get_x() + bar.get_width()/2, y_pos,
                         f'¥{v:+,.0f}', ha='center', fontsize=7, fontweight='bold',
                         color='#007A33' if v > 0 else '#CC3333')
-        ax.set_title(f'Shapley归因  |  GMV变化: ¥{shapley["delta"]:+,.0f}', fontsize=9, color='#00336B', fontweight='bold')
+        ax.set_title(f'Shapley归因  |  GMV变化: ¥{shapley["delta"]:+,.0f}', fontsize=9, color='#D4AF37', fontweight='bold')
         ax.spines['top'].set_visible(False); ax.spines['right'].set_visible(False)
         ax.spines['left'].set_color('#E0E0E0'); ax.spines['bottom'].set_color('#E0E0E0')
         ax.tick_params(axis='both', labelsize=7)
@@ -2888,20 +2888,20 @@ with tabs[0]:
                     _lag_lines.append(f'<b>{sh}</b> 推广数据更新至 <span style="color:#f59e0b">{p_date}</span>（整体最新 {_promo_max_date}）')
 
         if _lag_lines or _miss_lines:
-            _report_html = '<div style="background:#1e293b;border:1px solid #f59e0b;border-radius:8px;padding:10px 14px;margin:4px 0 10px 0;">'
+            _report_html = '<div style="background:#3a3a3a;border:1px solid #f59e0b;border-radius:8px;padding:10px 14px;margin:4px 0 10px 0;">'
             _report_html += '<div style="color:#fbbf24;font-weight:bold;margin-bottom:6px;">⚠️ 数据更新完整度检测</div>'
             for line in _lag_lines:
-                _report_html += f'<div style="color:#e2e8f0;font-size:13px;margin:2px 0;">· {line}</div>'
+                _report_html += f'<div style="color:#3a3a3a;font-size:13px;margin:2px 0;">· {line}</div>'
             for line in _miss_lines:
-                _report_html += f'<div style="color:#fca5a5;font-size:13px;margin:2px 0;">· {line}</div>'
+                _report_html += f'<div style="color:rgba(239,68,68,0.4);font-size:13px;margin:2px 0;">· {line}</div>'
             _report_html += '</div>'
             st.markdown(_report_html, unsafe_allow_html=True)
         else:
             # 数据完整，显示绿色确认
             st.markdown(
-                '<div style="background:#1e293b;border:1px solid #22c55e;border-radius:8px;padding:10px 14px;margin:4px 0 10px 0;">'
+                '<div style="background:#3a3a3a;border:1px solid #22c55e;border-radius:8px;padding:10px 14px;margin:4px 0 10px 0;">'
                 '<div style="color:#22c55e;font-weight:bold;">✅ 数据更新完整</div>'
-                f'<div style="color:#e2e8f0;font-size:13px;">销售最新日期：{_sales_max_date} | 推广最新日期：{_promo_max_date or "未上传"}</div>'
+                f'<div style="color:#3a3a3a;font-size:13px;">销售最新日期：{_sales_max_date} | 推广最新日期：{_promo_max_date or "未上传"}</div>'
                 '</div>',
                 unsafe_allow_html=True
             )
@@ -3009,7 +3009,7 @@ with tabs[0]:
             text=bar_texts, textposition='outside',
             marker_color='#3b82f6'))
         fig_a.update_layout(
-            title=f'支付金额趋势（{_ov_gran}）', height=340, template='plotly_white',
+            title=f'支付金额趋势（{_ov_gran}）', height=340, template='plotly_dark',
             margin=dict(l=20, r=20, t=45, b=20),
             yaxis_title=f'支付金额({amt_unit})', showlegend=False)
         st.plotly_chart(fig_a, width="stretch")
@@ -3029,7 +3029,7 @@ with tabs[0]:
             line=dict(color='#06b6d4', width=2),
             marker=dict(size=5)))
         fig_b.update_layout(
-            title=f'访客数趋势（{_ov_gran}）', height=340, template='plotly_white',
+            title=f'访客数趋势（{_ov_gran}）', height=340, template='plotly_dark',
             margin=dict(l=20, r=20, t=45, b=20),
             yaxis_title='访客数', showlegend=False)
         st.plotly_chart(fig_b, width="stretch")
@@ -3050,7 +3050,7 @@ with tabs[0]:
             fill='tozeroy', fillcolor='rgba(245,158,11,0.15)',
             marker=dict(size=5)))
         fig_c.update_layout(
-            title=f'支付转化率趋势（{_ov_gran}）', height=340, template='plotly_white',
+            title=f'支付转化率趋势（{_ov_gran}）', height=340, template='plotly_dark',
             margin=dict(l=20, r=20, t=45, b=20),
             yaxis_title='转化率(%)', showlegend=False)
         st.plotly_chart(fig_c, width="stretch")
@@ -3068,12 +3068,12 @@ with tabs[0]:
         if trend:
             fig.add_trace(go.Bar(x=[r['月份'][:4]+'/'+r['月份'][5:7] for r in trend], y=[_wan(r['支付金额']) for r in trend],
                                   text=[f"{_wan(r['支付金额'])}万" for r in trend], textposition='outside',
-                                  name='支付金额(万)', marker_color='#1d4ed8'))
+                                  name='支付金额(万)', marker_color='#D4AF37'))
             fig.add_trace(go.Scatter(x=[r['月份'][:4]+'/'+r['月份'][5:7] for r in trend], y=[r['访客数'] for r in trend],
                                       name='访客数', yaxis='y2', line=dict(color='#06b6d4', width=3)))
             fig.add_trace(go.Scatter(x=[r['月份'][:4]+'/'+r['月份'][5:7] for r in trend], y=[r['支付件数'] for r in trend],
                                       name='支付件数', yaxis='y2', line=dict(color='#22c55e', width=3)))
-        fig.update_layout(height=390, template='plotly_white', margin=dict(l=20, r=20, t=35, b=20),
+        fig.update_layout(height=390, template='plotly_dark', margin=dict(l=20, r=20, t=35, b=20),
                           legend=dict(orientation='h'), yaxis_title='支付金额(万)',
                           yaxis2=dict(title='流量/销量', overlaying='y', side='right'))
         st.plotly_chart(fig, width="stretch")
@@ -3103,7 +3103,7 @@ with tabs[0]:
             textposition='outside',
             marker=dict(color=px.colors.qualitative.Bold[:len(sr)])))
         fig.update_layout(height=430, margin=dict(l=10, r=80, t=35, b=10),
-                          title='店铺销售排行', template='plotly_white',
+                          title='店铺销售排行', template='plotly_dark',
                           yaxis=dict(categoryorder='total ascending'),
                           xaxis=dict(title='支付金额(万)', showgrid=True))
         st.plotly_chart(fig, width="stretch")
@@ -3119,7 +3119,7 @@ with tabs[0]:
             textposition='outside',
             marker=dict(color=px.colors.qualitative.Pastel[:len(cr)])))
         fig.update_layout(height=430, margin=dict(l=10, r=80, t=35, b=10),
-                          title='品类销售排行', template='plotly_white',
+                          title='品类销售排行', template='plotly_dark',
                           yaxis=dict(categoryorder='total ascending'),
                           xaxis=dict(title='支付金额(万)', showgrid=True))
         st.plotly_chart(fig, width="stretch")
@@ -3135,7 +3135,7 @@ with tabs[0]:
             textposition='outside',
             marker=dict(color=px.colors.qualitative.Set2[:len(model_rows)])))
         fig.update_layout(height=430, margin=dict(l=10, r=80, t=35, b=10),
-                          title='销额TOP10单品', template='plotly_white',
+                          title='销额TOP10单品', template='plotly_dark',
                           yaxis=dict(categoryorder='total ascending'),
                           xaxis=dict(title='支付金额(万)', showgrid=True))
         st.plotly_chart(fig, width="stretch")
@@ -3232,7 +3232,7 @@ with tabs[1]:
                                   name='推广费(万)', marker_color='#f59e0b', opacity=0.85))
             fig.add_trace(go.Scatter(x=[x[0] for x in _pr_s], y=[x[1]['总订单金额']/10000 for x in _pr_s],
                                      name='总订单金额(万)', yaxis='y2', line=dict(color='#10b981', width=2)))
-            fig.update_layout(height=360, template='plotly_white', legend=dict(orientation='h'),
+            fig.update_layout(height=360, template='plotly_dark', legend=dict(orientation='h'),
                                   yaxis_title='推广费(万)', yaxis2=dict(title='订单金额(万)', overlaying='y', side='right'))
             st.plotly_chart(fig, width="stretch")
             _render_download_panel([{'日期': x[0], '花费': x[1]['花费'], '总订单金额': x[1]['总订单金额']} for x in _pr_s],
@@ -3254,7 +3254,7 @@ with tabs[1]:
             _roi_v = [{_x_label: x[0], 'ROI': x[1]['总订单金额']/x[1]['花费'] if x[1]['花费'] else 0} for x in _roi_s]
             fig = px.line(pd.DataFrame(_roi_v), x=_x_label, y='ROI', markers=True,
                               title=f'{_gran_label}ROI趋势', line_shape='spline')
-            fig.update_layout(height=320, template='plotly_white', yaxis_title='ROI')
+            fig.update_layout(height=320, template='plotly_dark', yaxis_title='ROI')
             st.plotly_chart(fig, width="stretch")
             _render_download_panel([{'日期': x[0], '花费': x[1]['花费'], '总订单金额': x[1]['总订单金额'],
                                    'ROI': x[1]['总订单金额']/x[1]['花费'] if x[1]['花费'] else 0} for x in _roi_s],
@@ -3273,7 +3273,7 @@ with tabs[1]:
             fig = px.scatter(_df, x='花费', y='总订单金额', size='总订单金额',
                                      hover_data=['推广计划', 'ROI'], title='推广计划效率矩阵（花费 vs 成交金额）',
                                      color='ROI', color_continuous_scale='RdYlGn')
-            fig.update_layout(height=400, template='plotly_white')
+            fig.update_layout(height=400, template='plotly_dark')
             st.plotly_chart(fig, width="stretch")
             _render_download_panel(_pl_r, ['推广计划', '花费', '总订单金额', 'ROI'], 'promo_plan_efficiency.csv', '📥 推广计划效率')
 
@@ -3337,10 +3337,10 @@ with tabs[1]:
                 '直接ROI': f"{_d_roi:.2f}" if _fc else '--',
                 '费率': f"{_fc/_s_amt*100:.2f}%" if _s_amt else '--',
                 '转化率': f"{_cv:.1f}%" if _cv else '--',
-                '花费同比': f"<span style='color:{'#22c55e' if _fc_yoy and '+' in _fc_yoy else '#dc2626' if _fc_yoy and '-' in _fc_yoy else '#94a3b8'}'>{_fc_yoy}</span>",
-                '直接ROI同比': f"<span style='color:{'#22c55e' if _droi_yoy and '+' in _droi_yoy else '#dc2626' if _droi_yoy and '-' in _droi_yoy else '#94a3b8'}'>{_droi_yoy}</span>",
-                'CPC同比': f"<span style='color:{'#22c55e' if _cpc_yoy and '+' in _cpc_yoy else '#dc2626' if _cpc_yoy and '-' in _cpc_yoy else '#94a3b8'}'>{_cpc_yoy}</span>",
-                '转化率同比': f"<span style='color:{'#22c55e' if _cv_yoy and '+' in _cv_yoy else '#dc2626' if _cv_yoy and '-' in _cv_yoy else '#94a3b8'}'>{_cv_yoy}</span>",
+                '花费同比': f"<span style='color:{'#22c55e' if _fc_yoy and '+' in _fc_yoy else '#dc2626' if _fc_yoy and '-' in _fc_yoy else '#8e8e93'}'>{_fc_yoy}</span>",
+                '直接ROI同比': f"<span style='color:{'#22c55e' if _droi_yoy and '+' in _droi_yoy else '#dc2626' if _droi_yoy and '-' in _droi_yoy else '#8e8e93'}'>{_droi_yoy}</span>",
+                'CPC同比': f"<span style='color:{'#22c55e' if _cpc_yoy and '+' in _cpc_yoy else '#dc2626' if _cpc_yoy and '-' in _cpc_yoy else '#8e8e93'}'>{_cpc_yoy}</span>",
+                '转化率同比': f"<span style='color:{'#22c55e' if _cv_yoy and '+' in _cv_yoy else '#dc2626' if _cv_yoy and '-' in _cv_yoy else '#8e8e93'}'>{_cv_yoy}</span>",
             })
         if _sm_r:
             ma1, ma2 = st.columns(2)
@@ -3354,7 +3354,7 @@ with tabs[1]:
                     textposition='outside',
                     marker=dict(color=px.colors.qualitative.Pastel[:len(_sm_r)])))
                 fig.update_layout(height=max(280, len(_sm_r)*45), margin=dict(l=10, r=80, t=35, b=10),
-                                   title='各店铺推广花费', template='plotly_white',
+                                   title='各店铺推广花费', template='plotly_dark',
                                    yaxis=dict(categoryorder='total ascending'))
                 st.plotly_chart(fig, width="stretch")
                 _render_download_panel(_sm_r, list(_sm_r[0].keys()), 'promo_store_spend.csv', '📥 店铺推广费')
@@ -3369,7 +3369,7 @@ with tabs[1]:
                     textposition='outside',
                     marker=dict(color=_colors_roi)))
                 fig.update_layout(height=max(280, len(_sm_r)*45), margin=dict(l=10, r=80, t=35, b=10),
-                                   title='各店铺ROI（绿≥3 橙≥1 红<1）', template='plotly_white',
+                                   title='各店铺ROI（绿≥3 橙≥1 红<1）', template='plotly_dark',
                                    yaxis=dict(categoryorder='total ascending'))
                 st.plotly_chart(fig, width="stretch")
                 _render_download_panel(_sm_r, list(_sm_r[0].keys()), 'promo_store_roi.csv', '📥 店铺ROI')
@@ -3420,10 +3420,10 @@ with tabs[1]:
                 '直接ROI': f"{_d_roi:.2f}" if _fc else '--',
                 '费率': f"{_fc/_s_amt_cm*100:.2f}%" if _s_amt_cm else '--',
                 '转化率': f"{_cv:.1f}%" if _cv else '--',
-                '花费同比': f"<span style='color:{'#22c55e' if _fc_yoy and '+' in _fc_yoy else '#dc2626' if _fc_yoy and '-' in _fc_yoy else '#94a3b8'}'>{_fc_yoy}</span>",
-                '直接ROI同比': f"<span style='color:{'#22c55e' if _droi_yoy and '+' in _droi_yoy else '#dc2626' if _droi_yoy and '-' in _droi_yoy else '#94a3b8'}'>{_droi_yoy}</span>",
-                'CPC同比': f"<span style='color:{'#22c55e' if _cpc_yoy and '+' in _cpc_yoy else '#dc2626' if _cpc_yoy and '-' in _cpc_yoy else '#94a3b8'}'>{_cpc_yoy}</span>",
-                '转化率同比': f"<span style='color:{'#22c55e' if _cv_yoy and '+' in _cv_yoy else '#dc2626' if _cv_yoy and '-' in _cv_yoy else '#94a3b8'}'>{_cv_yoy}</span>",
+                '花费同比': f"<span style='color:{'#22c55e' if _fc_yoy and '+' in _fc_yoy else '#dc2626' if _fc_yoy and '-' in _fc_yoy else '#8e8e93'}'>{_fc_yoy}</span>",
+                '直接ROI同比': f"<span style='color:{'#22c55e' if _droi_yoy and '+' in _droi_yoy else '#dc2626' if _droi_yoy and '-' in _droi_yoy else '#8e8e93'}'>{_droi_yoy}</span>",
+                'CPC同比': f"<span style='color:{'#22c55e' if _cpc_yoy and '+' in _cpc_yoy else '#dc2626' if _cpc_yoy and '-' in _cpc_yoy else '#8e8e93'}'>{_cpc_yoy}</span>",
+                '转化率同比': f"<span style='color:{'#22c55e' if _cv_yoy and '+' in _cv_yoy else '#dc2626' if _cv_yoy and '-' in _cv_yoy else '#8e8e93'}'>{_cv_yoy}</span>",
             })
         if _cm_r:
             cb1, cb2 = st.columns(2)
@@ -3441,9 +3441,9 @@ with tabs[1]:
                 _roi_cur = [float(x['ROI']) if x['ROI'] != '--' else 0 for x in _cm_r]
                 _droi_cur = [float(x['直接ROI']) if x['直接ROI'] != '--' else 0 for x in _cm_r]
                 fig = go.Figure()
-                fig.add_trace(go.Bar(name='ROI', x=[x['渠道'] for x in _cm_r], y=_roi_cur, marker_color='#1d4ed8'))
+                fig.add_trace(go.Bar(name='ROI', x=[x['渠道'] for x in _cm_r], y=_roi_cur, marker_color='#D4AF37'))
                 fig.add_trace(go.Bar(name='直接ROI', x=[x['渠道'] for x in _cm_r], y=_droi_cur, marker_color='#06b6d4'))
-                fig.update_layout(height=340, barmode='group', template='plotly_white', title='渠道ROI对比')
+                fig.update_layout(height=340, barmode='group', template='plotly_dark', title='渠道ROI对比')
                 st.plotly_chart(fig, width="stretch")
                 _render_download_panel(_cm_r, list(_cm_r[0].keys()), 'promo_chan_roi.csv', '📥 渠道ROI对比')
             _cols = list(_cm_r[0].keys())
@@ -3463,7 +3463,7 @@ with tabs[1]:
                 textposition='outside',
                 marker=dict(color=px.colors.qualitative.Bold[:len(_tp)])))
             fig.update_layout(height=400, margin=dict(l=10, r=80, t=35, b=10),
-                               title='TOP10 推广计划（按花费）', template='plotly_white',
+                               title='TOP10 推广计划（按花费）', template='plotly_dark',
                                yaxis=dict(categoryorder='total ascending'),
                                xaxis=dict(title='花费(万)', showgrid=True))
             st.plotly_chart(fig, width="stretch")
@@ -3557,10 +3557,10 @@ with tabs[1]:
                 '直接ROI': f"{_d_roi:.2f}" if _fc else '--',
                 '费率': f"{_fc/_s_mdl*100:.2f}%" if _s_mdl else '--',
                 '转化率': f"{_cv:.1f}%" if _cv else '--',
-                '花费同比': f"<span style='color:{'#22c55e' if _fc_yoy and '+' in _fc_yoy else '#dc2626' if _fc_yoy and '-' in _fc_yoy else '#94a3b8'}'>{_fc_yoy}</span>",
-                '直接ROI同比': f"<span style='color:{'#22c55e' if _droi_yoy and '+' in _droi_yoy else '#dc2626' if _droi_yoy and '-' in _droi_yoy else '#94a3b8'}'>{_droi_yoy}</span>",
-                'CPC同比': f"<span style='color:{'#22c55e' if _cpc_yoy and '+' in _cpc_yoy else '#dc2626' if _cpc_yoy and '-' in _cpc_yoy else '#94a3b8'}'>{_cpc_yoy}</span>",
-                '转化率同比': f"<span style='color:{'#22c55e' if _cv_yoy and '+' in _cv_yoy else '#dc2626' if _cv_yoy and '-' in _cv_yoy else '#94a3b8'}'>{_cv_yoy}</span>",
+                '花费同比': f"<span style='color:{'#22c55e' if _fc_yoy and '+' in _fc_yoy else '#dc2626' if _fc_yoy and '-' in _fc_yoy else '#8e8e93'}'>{_fc_yoy}</span>",
+                '直接ROI同比': f"<span style='color:{'#22c55e' if _droi_yoy and '+' in _droi_yoy else '#dc2626' if _droi_yoy and '-' in _droi_yoy else '#8e8e93'}'>{_droi_yoy}</span>",
+                'CPC同比': f"<span style='color:{'#22c55e' if _cpc_yoy and '+' in _cpc_yoy else '#dc2626' if _cpc_yoy and '-' in _cpc_yoy else '#8e8e93'}'>{_cpc_yoy}</span>",
+                '转化率同比': f"<span style='color:{'#22c55e' if _cv_yoy and '+' in _cv_yoy else '#dc2626' if _cv_yoy and '-' in _cv_yoy else '#8e8e93'}'>{_cv_yoy}</span>",
             })
         if _sku_r:
             sku1, sku2 = st.columns(2)
@@ -3574,7 +3574,7 @@ with tabs[1]:
                     textposition='outside',
                     marker=dict(color=px.colors.qualitative.Bold[:len(_top10)])))
                 fig.update_layout(height=max(300, len(_top10)*40), margin=dict(l=10, r=80, t=35, b=10),
-                                   title='TOP10 单品推广花费', template='plotly_white',
+                                   title='TOP10 单品推广花费', template='plotly_dark',
                                    yaxis=dict(categoryorder='total ascending'))
                 st.plotly_chart(fig, width="stretch")
                 _render_download_panel(_top10, ['单品', '花费', '总订单金额', 'ROI'], 'promo_sku_spend.csv', '📥 TOP10单品推广费')
@@ -3589,7 +3589,7 @@ with tabs[1]:
                     textposition='outside',
                     marker=dict(color=_colors)))
                 fig.update_layout(height=max(300, len(_sku_r[:10])*40), margin=dict(l=10, r=80, t=35, b=10),
-                                   title='TOP10 单品ROI（绿≥3 橙≥1 红&lt;1）', template='plotly_white',
+                                   title='TOP10 单品ROI（绿≥3 橙≥1 红&lt;1）', template='plotly_dark',
                                    yaxis=dict(categoryorder='total ascending'))
                 st.plotly_chart(fig, width="stretch")
             _cols = list(_sku_r[0].keys())
@@ -3642,10 +3642,10 @@ with tabs[1]:
                     '直接ROI': f"{_dri:.2f}",
                     '费率': f"{_rate:.2f}%",
                     '转化率': f"{_cv:.2f}%",
-                    '花费同比': f"<span style='color:{_fc_c or '#94a3b8'}'>{_fc_yoy}</span>",
-                    '直接ROI同比': f"<span style='color:{_dri_c or '#94a3b8'}'>{_dri_yoy}</span>",
-                    'CPC同比': f"<span style='color:{_cpc_c or '#94a3b8'}'>{_cpc_yoy}</span>",
-                    '转化率同比': f"<span style='color:{_cv_c or '#94a3b8'}'>{_cv_yoy}</span>",
+                    '花费同比': f"<span style='color:{_fc_c or '#8e8e93'}'>{_fc_yoy}</span>",
+                    '直接ROI同比': f"<span style='color:{_dri_c or '#8e8e93'}'>{_dri_yoy}</span>",
+                    'CPC同比': f"<span style='color:{_cpc_c or '#8e8e93'}'>{_cpc_yoy}</span>",
+                    '转化率同比': f"<span style='color:{_cv_c or '#8e8e93'}'>{_cv_yoy}</span>",
                 })
             _cat_html = _html_table(_cat_r, col_widths={c: '105px' for c in _cat_r[0].keys()}, height=max(300, len(_cat_r)*34+40))
             st.markdown(_wrap_fullscreen(_cat_html, title='📂 产品线推广矩阵')[0], unsafe_allow_html=True)
@@ -3695,10 +3695,10 @@ with tabs[1]:
                     '直接ROI': f"{_dri:.2f}",
                     '费率': f"{_rate:.2f}%",
                     '转化率': f"{_cv:.2f}%",
-                    '花费同比': f"<span style='color:{_fc_c or '#94a3b8'}'>{_fc_yoy}</span>",
-                    '直接ROI同比': f"<span style='color:{_dri_c or '#94a3b8'}'>{_dri_yoy}</span>",
-                    'CPC同比': f"<span style='color:{_cpc_c or '#94a3b8'}'>{_cpc_yoy}</span>",
-                    '转化率同比': f"<span style='color:{_cv_c or '#94a3b8'}'>{_cv_yoy}</span>",
+                    '花费同比': f"<span style='color:{_fc_c or '#8e8e93'}'>{_fc_yoy}</span>",
+                    '直接ROI同比': f"<span style='color:{_dri_c or '#8e8e93'}'>{_dri_yoy}</span>",
+                    'CPC同比': f"<span style='color:{_cpc_c or '#8e8e93'}'>{_cpc_yoy}</span>",
+                    '转化率同比': f"<span style='color:{_cv_c or '#8e8e93'}'>{_cv_yoy}</span>",
                 })
             _scene_html = _html_table(_scene_r, col_widths={c: '105px' for c in _scene_r[0].keys()}, height=max(300, len(_scene_r)*34+40))
             st.markdown(_wrap_fullscreen(_scene_html, title='🎯 营销场景推广矩阵')[0], unsafe_allow_html=True)
@@ -3781,7 +3781,7 @@ with tabs[2]:
     prev_sum = calc_period_summary(_t2_prev_s, _t2_prev_e)
 
     st.markdown('---')
-    st.markdown('<div class="section-title" style="border-left:4px solid #1d4ed8;padding-left:12px;">📊 销售对比分析</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="border-left:4px solid #D4AF37;padding-left:12px;">📊 销售对比分析</div>', unsafe_allow_html=True)
 
     comp_kpis = [
         ('支付金额', '支付金额', '¥', False),
@@ -3810,7 +3810,7 @@ with tabs[2]:
             delta_label = delta_badge(delta_v)
         with kpi_cols[idx]:
             st.markdown(
-                f'<p style="font-weight:800;color:#1d4ed8;font-size:13px;margin:0 0 6px 0;text-align:center;">{k_name}</p>'
+                f'<p style="font-weight:800;color:#D4AF37;font-size:13px;margin:0 0 6px 0;text-align:center;">{k_name}</p>'
                 f'<div class="comp-card" style="padding:10px;"><div class="comp-period">{_t2_label_a[:16]}</div><div class="comp-value" style="font-size:18px;">{cur_str}</div></div>'
                 f'<div class="comp-card" style="padding:10px;"><div class="comp-period">{_t2_label_b[:16]}</div><div class="comp-value" style="font-size:18px;color:#64748b;">{prev_str}</div></div>'
                 f'<div class="comp-card" style="padding:10px;background:#f0f9ff;"><div class="comp-period">变化率</div><div style="font-size:16px;font-weight:700;">{delta_label}</div></div>',
@@ -3933,7 +3933,7 @@ with tabs[2]:
                     f'<p style="font-weight:800;color:#f59e0b;font-size:13px;margin:0 0 6px 0;text-align:center;">{k_name}</p>'
                     f'<div class="comp-card" style="padding:10px;"><div class="comp-period">{_t2_label_a[:16]}</div><div class="comp-value" style="font-size:18px;">{cur_str}</div></div>'
                     f'<div class="comp-card" style="padding:10px;"><div class="comp-period">{_t2_label_b[:16]}</div><div class="comp-value" style="font-size:18px;color:#64748b;">{prev_str}</div></div>'
-                    f'<div class="comp-card" style="padding:10px;background:#fffbeb;"><div class="comp-period">变化率</div><div style="font-size:16px;font-weight:700;">{delta_label}</div></div>',
+                    f'<div class="comp-card" style="padding:10px;background:#1a1a1abeb;"><div class="comp-period">变化率</div><div style="font-size:16px;font-weight:700;">{delta_label}</div></div>',
                     unsafe_allow_html=True
                 )
 
@@ -3984,8 +3984,8 @@ with tabs[2]:
     chart_data = [{'指标': k, '本期': cur_sum.get(v, 0), '对比期': prev_sum.get(v, 0)} for k, v in key_map.items()]
     with p1:
         fig = px.bar(chart_data, x='指标', y=['本期', '对比期'], barmode='group',
-                     color_discrete_sequence=['#1d4ed8', '#f59e0b'])
-        fig.update_layout(height=350, template='plotly_white', title='核心指标对比', legend_title='时间段')
+                     color_discrete_sequence=['#D4AF37', '#f59e0b'])
+        fig.update_layout(height=350, template='plotly_dark', title='核心指标对比', legend_title='时间段')
         st.plotly_chart(fig, width="stretch")
         _render_download_panel(chart_data, ['指标', '本期', '对比期'], 'period_core_compare.csv', '📥 核心指标对比')
     with p2:
@@ -3998,7 +3998,7 @@ with tabs[2]:
         colors = ['#22c55e' if x['变化率'] >= 0 else '#ef4444' for x in ch_data]
         fig = go.Figure(go.Bar(x=[x['指标'] for x in ch_data], y=[x['变化率'] for x in ch_data],
                                 marker_color=colors))
-        fig.update_layout(height=350, template='plotly_white', title='各指标变化率', yaxis_tickformat='.1%')
+        fig.update_layout(height=350, template='plotly_dark', title='各指标变化率', yaxis_tickformat='.1%')
         st.plotly_chart(fig, width="stretch")
         _render_download_panel(ch_data, ['指标', '变化率'], 'period_change_rate.csv', '📥 各指标变化率')
 
@@ -4032,7 +4032,7 @@ with tabs[2]:
 
     _metric_defs = [
         ('销售额',  '支付金额',   lambda v: f"¥{v:,.0f}",    '#fef3c7'),  # amber
-        ('销售件数','支付件数',   lambda v: f"{v:,.0f}",     '#dbeafe'),  # blue
+        ('销售件数','支付件数',   lambda v: f"{v:,.0f}",     'rgba(212,175,55,0.15)'),  # blue
         ('访客数',  '商品访客数', lambda v: f"{v:,.0f}",     '#dcfce7'),  # green
         ('转化率',  '支付转化率', lambda v: f"{v*100:.2f}%", '#f3e8ff'),  # purple
         ('客单价',  '客单价',     lambda v: f"¥{v:,.2f}",    '#ccfbf1'),  # teal
@@ -4059,7 +4059,7 @@ with tabs[2]:
             chg = (cur_v - prev_v) / prev_v if prev_v else None
             if chg is None:
                 chg_txt = '--'
-                chg_color = '#94a3b8'
+                chg_color = '#8e8e93'
             else:
                 chg_txt = f"{'+' if chg >= 0 else ''}{chg*100:.1f}%"
                 chg_color = '#22c55e' if chg >= 0 else '#dc2626'
@@ -4105,7 +4105,7 @@ with tabs[2]:
             chg = (_cur_sum - _prev_sum) / _prev_sum if _prev_sum else None
             if chg is None:
                 chg_txt = '--'
-                chg_color = '#94a3b8'
+                chg_color = '#8e8e93'
             else:
                 chg_txt = f"{'+' if chg >= 0 else ''}{chg*100:.1f}%"
                 chg_color = '#22c55e' if chg >= 0 else '#dc2626'
@@ -4118,24 +4118,24 @@ with tabs[2]:
         _html = '<div class="styled-table-wrap" style="max-height:400px;overflow-y:auto;"><table class="styled-table"><thead>'
         # 表头第1行：指标分组
         _html += '<tr>'
-        _html += f'<th colspan="2" style="background:#e2e8f0;color:#1e293b;text-align:center;font-size:12px;font-weight:600;">维度信息</th>'
+        _html += f'<th colspan="2" style="background:#3a3a3a;color:#3a3a3a;text-align:center;font-size:12px;font-weight:600;">维度信息</th>'
         for _ml, _mf, _fmt, _color in _metric_defs:
-            _html += f'<th colspan="3" style="background:{_color};color:#1e293b;text-align:center;font-size:12px;font-weight:600;border-left:2px solid #fff;">{_ml}</th>'
+            _html += f'<th colspan="3" style="background:{_color};color:#3a3a3a;text-align:center;font-size:12px;font-weight:600;border-left:2px solid #fff;">{_ml}</th>'
         _html += '</tr>'
         # 表头第2行：具体列名
         _html += '<tr>'
-        _html += f'<th style="min-width:110px;background:#e2e8f0;color:#1e293b;font-weight:600;">{_dim_label}</th>'
-        _html += '<th style="min-width:72px;background:#e0f2fe;color:#1e293b;font-weight:600;">占比</th>'
+        _html += f'<th style="min-width:110px;background:#3a3a3a;color:#3a3a3a;font-weight:600;">{_dim_label}</th>'
+        _html += '<th style="min-width:72px;background:rgba(212,175,55,0.1);color:#3a3a3a;font-weight:600;">占比</th>'
         for _ml, _mf, _fmt, _color in _metric_defs:
-            _html += f'<th style="min-width:80px;background:{_color};color:#1e293b;font-weight:600;">本期</th>'
-            _html += f'<th style="min-width:80px;background:{_color};color:#1e293b;font-weight:600;">对比期</th>'
-            _html += f'<th style="min-width:72px;background:{_color};color:#1e293b;font-weight:600;">变化率</th>'
+            _html += f'<th style="min-width:80px;background:{_color};color:#3a3a3a;font-weight:600;">本期</th>'
+            _html += f'<th style="min-width:80px;background:{_color};color:#3a3a3a;font-weight:600;">对比期</th>'
+            _html += f'<th style="min-width:72px;background:{_color};color:#3a3a3a;font-weight:600;">变化率</th>'
         _html += '</tr></thead><tbody>'
         # 数据行
         _total_row = len(dim_compare) - 1
         for i, r in enumerate(dim_compare):
             is_total = (i == _total_row)
-            bg = '#fff7ed' if is_total else ('#fafafa' if i % 2 == 0 else 'white')
+            bg = 'rgba(249,115,22,0.1)' if is_total else ('#1e1e1e' if i % 2 == 0 else '#252525')
             fw = 'bold' if is_total else 'normal'
             _html += f'<tr style="background:{bg};font-weight:{fw};">'
             for j, c in enumerate(_dim_cols):
@@ -4246,11 +4246,11 @@ with tabs[2]:
 
         _p_metric_defs = [
             ('花费',        '_花费',         lambda v: f'¥{v:,.0f}',    '#fef3c7'),
-            ('费率',        '_fee_rate',     lambda v: f'{v*100:.2f}%' if v is not None else '--', '#fee2e2'),
+            ('费率',        '_fee_rate',     lambda v: f'{v*100:.2f}%' if v is not None else '--', 'rgba(239,68,68,0.15)'),
             ('CPC',         '_cpc',          lambda v: f'¥{v:.2f}',     '#fef3c7'),
             ('直接ROI',     '_direct_roi',   lambda v: f'{v:.2f}',      '#dcfce7'),
             ('总ROI',       '_total_roi',    lambda v: f'{v:.2f}',      '#ccfbf1'),
-            ('点击量',      '_点击数',       lambda v: f'{v:,.0f}',      '#dbeafe'),
+            ('点击量',      '_点击数',       lambda v: f'{v:,.0f}',      'rgba(212,175,55,0.15)'),
             ('点击率',      '_ctr',          lambda v: f'{v*100:.2f}%', '#e0e7ff'),
             ('直接转化率',  '_direct_tcvr',  lambda v: f'{v*100:.2f}%', '#f3e8ff'),
             ('总转化率',    '_total_tcvr',   lambda v: f'{v*100:.2f}%', '#fce7f3'),
@@ -4300,7 +4300,7 @@ with tabs[2]:
                 _prev_s = _fmt(prev_v)
                 chg = (cur_v - prev_v) / prev_v if prev_v else None
                 if chg is None:
-                    chg_txt, chg_color = '--', '#94a3b8'
+                    chg_txt, chg_color = '--', '#8e8e93'
                 else:
                     chg_txt = f"{'+' if chg >= 0 else ''}{chg*100:.1f}%"
                     # 花费、CPC、费率：涨是红（坏），跌是绿（好）；其余：涨是绿，跌是红
@@ -4358,7 +4358,7 @@ with tabs[2]:
                 _p_sum_row[f'{_ml}(对比期)'] = _fmt(_pv)
                 chg = (_cv - _pv) / _pv if _pv else None
                 if chg is None:
-                    chg_txt, chg_color = '--', '#94a3b8'
+                    chg_txt, chg_color = '--', '#8e8e93'
                 else:
                     chg_txt = f"{'+' if chg >= 0 else ''}{chg*100:.1f}%"
                     if _ml in ('花费', 'CPC', '费率'):
@@ -4372,22 +4372,22 @@ with tabs[2]:
             _p_cmp_cols = list(_p_cmp_tbl[0].keys())
             _p_html = '<div class="styled-table-wrap" style="max-height:400px;overflow-y:auto;"><table class="styled-table"><thead>'
             _p_html += '<tr>'
-            _p_html += '<th colspan="2" style="background:#e2e8f0;color:#1e293b;text-align:center;font-size:12px;font-weight:600;">维度信息</th>'
+            _p_html += '<th colspan="2" style="background:#3a3a3a;color:#3a3a3a;text-align:center;font-size:12px;font-weight:600;">维度信息</th>'
             for _ml, _mf, _fmt, _color in _p_metric_defs:
-                _p_html += f'<th colspan="3" style="background:{_color};color:#1e293b;text-align:center;font-size:12px;font-weight:600;border-left:2px solid #fff;">{_ml}</th>'
+                _p_html += f'<th colspan="3" style="background:{_color};color:#3a3a3a;text-align:center;font-size:12px;font-weight:600;border-left:2px solid #fff;">{_ml}</th>'
             _p_html += '</tr>'
             _p_html += '<tr>'
-            _p_html += f'<th style="min-width:110px;background:#e2e8f0;color:#1e293b;font-weight:600;">{_p_cmp_dim_label}</th>'
-            _p_html += '<th style="min-width:72px;background:#e0f2fe;color:#1e293b;font-weight:600;">花费占比</th>'
+            _p_html += f'<th style="min-width:110px;background:#3a3a3a;color:#3a3a3a;font-weight:600;">{_p_cmp_dim_label}</th>'
+            _p_html += '<th style="min-width:72px;background:rgba(212,175,55,0.1);color:#3a3a3a;font-weight:600;">花费占比</th>'
             for _ml, _mf, _fmt, _color in _p_metric_defs:
-                _p_html += f'<th style="min-width:80px;background:{_color};color:#1e293b;font-weight:600;">本期</th>'
-                _p_html += f'<th style="min-width:80px;background:{_color};color:#1e293b;font-weight:600;">对比期</th>'
-                _p_html += f'<th style="min-width:72px;background:{_color};color:#1e293b;font-weight:600;">变化率</th>'
+                _p_html += f'<th style="min-width:80px;background:{_color};color:#3a3a3a;font-weight:600;">本期</th>'
+                _p_html += f'<th style="min-width:80px;background:{_color};color:#3a3a3a;font-weight:600;">对比期</th>'
+                _p_html += f'<th style="min-width:72px;background:{_color};color:#3a3a3a;font-weight:600;">变化率</th>'
             _p_html += '</tr></thead><tbody>'
             _p_total_row_idx = len(_p_cmp_tbl) - 1
             for i, r in enumerate(_p_cmp_tbl):
                 is_total = (i == _p_total_row_idx)
-                bg = '#fff7ed' if is_total else ('#fafafa' if i % 2 == 0 else 'white')
+                bg = 'rgba(249,115,22,0.1)' if is_total else ('#1e1e1e' if i % 2 == 0 else '#252525')
                 fw = 'bold' if is_total else 'normal'
                 _p_html += f'<tr style="background:{bg};font-weight:{fw};">'
                 for j, c in enumerate(_p_cmp_cols):
@@ -5067,10 +5067,10 @@ with tabs[3]:
         if tr_data:
             fig.add_trace(go.Bar(x=[r['周期'] for r in tr_data], y=[_wan(r['支付金额']) for r in tr_data],
                                   text=[f"{_wan(r['支付金额'])}万" for r in tr_data], textposition='outside',
-                                  name='支付金额(万)', marker_color='#1d4ed8', opacity=0.85))
+                                  name='支付金额(万)', marker_color='#D4AF37', opacity=0.85))
             fig.add_trace(go.Scatter(x=[r['周期'] for r in tr_data], y=[r['访客数'] for r in tr_data],
                                       name='访客数', yaxis='y2', line=dict(color='#06b6d4', width=2)))
-        fig.update_layout(height=350, template='plotly_white', legend=dict(orientation='h'),
+        fig.update_layout(height=350, template='plotly_dark', legend=dict(orientation='h'),
                         yaxis_title='支付金额(万)', yaxis2=dict(title='访客数', overlaying='y', side='right'))
         st.plotly_chart(fig, width="stretch")
         _render_download_panel(tr_data, ['周期','支付金额','访客数','转化率','加购率'], 'trend_amt_vs_vis.csv', '📥 趋势：金额/访客')
@@ -5081,7 +5081,7 @@ with tabs[3]:
                                       name='支付转化率(%)', line=dict(color='#22c55e', width=2)))
             fig.add_trace(go.Scatter(x=[r['周期'] for r in tr_data], y=[r['加购率'] * 100 for r in tr_data],
                                       name='加购率(%)', line=dict(color='#f59e0b', width=2)))
-        fig.update_layout(height=350, template='plotly_white', legend=dict(orientation='h'), yaxis_title='比率(%)')
+        fig.update_layout(height=350, template='plotly_dark', legend=dict(orientation='h'), yaxis_title='比率(%)')
         st.plotly_chart(fig, width="stretch")
         _render_download_panel(tr_data, ['周期','支付金额','访客数','转化率','加购率'], 'trend_rate.csv', '📥 趋势：转化率/加购率')
 
@@ -5112,11 +5112,11 @@ with tabs[3]:
         fig = go.Figure()
         fig.add_trace(go.Bar(x=[r['月份'] for r in _yoy_monthly], y=[_wan(r['支付金额']) for r in _yoy_monthly],
                               text=[f"{_wan(r['支付金额'])}万" for r in _yoy_monthly], textposition='outside',
-                              name='本期月度金额', marker_color='#1d4ed8'))
+                              name='本期月度金额', marker_color='#D4AF37'))
         ly_data = [_all_ym_agg.get(month_shift(r['月份'], -12), {}).get('支付金额', 0) for r in _yoy_monthly]
         fig.add_trace(go.Scatter(x=[r['月份'] for r in _yoy_monthly], y=[_wan(v) for v in ly_data],
                                   name='去年同期金额', line=dict(color='#f59e0b', width=2, dash='dash')))
-        fig.update_layout(height=380, template='plotly_white', legend=dict(orientation='h'), yaxis_title='支付金额(万)')
+        fig.update_layout(height=380, template='plotly_dark', legend=dict(orientation='h'), yaxis_title='支付金额(万)')
         st.plotly_chart(fig, width="stretch")
 
     st.markdown('---')
@@ -5169,7 +5169,7 @@ with tabs[3]:
         fig.update_layout(
             title='各星期日均支付金额与转化率',
             height=380,
-            template='plotly_white',
+            template='plotly_dark',
             legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1),
             yaxis=dict(title='支付金额（万元）', side='left', showgrid=True),
             yaxis2=dict(title='转化率（%）', side='right', overlaying='y', showgrid=False),
@@ -6253,13 +6253,13 @@ with tabs[4]:
 
     # ── Layer 1: 一句话核心发现（30% 定位差距）──
     _one_line = _gen_one_line_summary(gmv_g, shapley, [], vis_g, cvr_g, aov_g)
-    _summary_bg = '#fef2f2' if (gmv_g is not None and gmv_g < DANGER_T) else ('#fff7ed' if (gmv_g is not None and gmv_g < WARN_T) else '#f0fdf4')
-    _summary_border = '#fca5a5' if (gmv_g is not None and gmv_g < DANGER_T) else ('#fdba74' if (gmv_g is not None and gmv_g < WARN_T) else '#86efac')
+    _summary_bg = 'rgba(239,68,68,0.1)' if (gmv_g is not None and gmv_g < DANGER_T) else ('rgba(249,115,22,0.1)' if (gmv_g is not None and gmv_g < WARN_T) else 'rgba(34,197,94,0.1)')
+    _summary_border = 'rgba(239,68,68,0.4)' if (gmv_g is not None and gmv_g < DANGER_T) else ('rgba(249,115,22,0.4)' if (gmv_g is not None and gmv_g < WARN_T) else 'rgba(34,197,94,0.4)')
     st.markdown(
         f"<div style='background:{_summary_bg};border:2px solid {_summary_border};border-radius:16px;"
         f"padding:18px 24px;margin:8px 0 16px 0;'>"
         f"<div style='font-size:12px;color:#64748b;margin-bottom:6px;'>📌 一句话核心发现</div>"
-        f"<div style='font-size:17px;font-weight:800;color:#0f172a;line-height:1.6;'>{_one_line}</div>"
+        f"<div style='font-size:17px;font-weight:800;color:#e5e5e5;line-height:1.6;'>{_one_line}</div>"
         f"</div>",
         unsafe_allow_html=True)
 
@@ -6268,7 +6268,7 @@ with tabs[4]:
         "<div style='font-size:13px;color:#475569;font-weight:700;margin:4px 0 2px 0;'>"
         "📊 三GAP速览 — 目标达成 · 同比变化 · 环比变化</div>", unsafe_allow_html=True)
     st.markdown(
-        "<div style='font-size:10px;color:#94a3b8;margin:0 0 8px 0;'>"
+        "<div style='font-size:10px;color:#8e8e93;margin:0 0 8px 0;'>"
         "GAP=差距(Gap)：GAP1 目标vs实际 | GAP2 今年vs去年同期 | GAP3 本期vs上期</div>", unsafe_allow_html=True)
 
     gap1, gap2, gap3 = st.columns(3)
@@ -6285,10 +6285,10 @@ with tabs[4]:
         _gap1_target_str = f'¥{gmv_target:,.0f}' if gmv_target else '--'
         _gap1_actual_str = f'¥{cur_sum.get("支付金额",0):,.0f}'
         st.markdown(
-            f"<div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px;text-align:center;'>"
+            f"<div style='background:#252525;border:1px solid #3a3a3a;border-radius:12px;padding:14px;text-align:center;'>"
             f"<div style='font-size:11px;color:#64748b;font-weight:700;margin-bottom:6px;'>🎯 GAP 1: 目标达成</div>"
             f"<div style='font-size:24px;font-weight:900;color:{_gap1_color};'>{_gap1_icon} {_gap1_val}</div>"
-            f"<div style='font-size:10px;color:#94a3b8;margin-top:4px;'>实际 {_gap1_actual_str} / 目标 {_gap1_target_str}</div>"
+            f"<div style='font-size:10px;color:#8e8e93;margin-top:4px;'>实际 {_gap1_actual_str} / 目标 {_gap1_target_str}</div>"
             f"</div>", unsafe_allow_html=True)
 
     # GAP 2: 同比变化
@@ -6300,10 +6300,10 @@ with tabs[4]:
         _gap2_val = f'{gmv_yoy*100:+.1f}%' if gmv_yoy is not None else '--'
         _yoy_label = f'去年同期 {yoy_s}~{yoy_e}' if yoy_sum else '去年同期'
         st.markdown(
-            f"<div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px;text-align:center;'>"
+            f"<div style='background:#252525;border:1px solid #3a3a3a;border-radius:12px;padding:14px;text-align:center;'>"
             f"<div style='font-size:11px;color:#64748b;font-weight:700;margin-bottom:6px;'>📅 GAP 2: 同比变化</div>"
             f"<div style='font-size:24px;font-weight:900;color:{_gap2_color};'>{_gap2_icon} {_gap2_val}</div>"
-            f"<div style='font-size:10px;color:#94a3b8;margin-top:4px;'>vs {_yoy_label}</div>"
+            f"<div style='font-size:10px;color:#8e8e93;margin-top:4px;'>vs {_yoy_label}</div>"
             f"</div>", unsafe_allow_html=True)
 
     # GAP 3: 环比变化
@@ -6314,10 +6314,10 @@ with tabs[4]:
             elif gmv_g < WARN_T: _gap3_color, _gap3_icon = '#f59e0b', '📊'
         _gap3_val = _pct(gmv_g)
         st.markdown(
-            f"<div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px;text-align:center;'>"
+            f"<div style='background:#252525;border:1px solid #3a3a3a;border-radius:12px;padding:14px;text-align:center;'>"
             f"<div style='font-size:11px;color:#64748b;font-weight:700;margin-bottom:6px;'>🔄 GAP 3: 环比变化</div>"
             f"<div style='font-size:24px;font-weight:900;color:{_gap3_color};'>{_gap3_icon} {_gap3_val}</div>"
-            f"<div style='font-size:10px;color:#94a3b8;margin-top:4px;'>vs 上期 {_t2_prev_s}~{_t2_prev_e}</div>"
+            f"<div style='font-size:10px;color:#8e8e93;margin-top:4px;'>vs 上期 {_t2_prev_s}~{_t2_prev_e}</div>"
             f"</div>", unsafe_allow_html=True)
 
     # ── Shapley归因条 ──
@@ -6335,15 +6335,15 @@ with tabs[4]:
             f"<div style='font-size:11px;color:#64748b;margin-bottom:6px;'>🔬 Shapley归因 — GMV变化分解（Δ={_delta_str}）</div>"
             f"<div style='display:flex;gap:12px;align-items:center;'>"
             f"<div style='flex:1;'><div style='font-size:10px;color:#475569;'>流量</div>"
-            f"<div style='background:#e2e8f0;border-radius:6px;height:8px;margin:2px 0;'>"
+            f"<div style='background:#3a3a3a;border-radius:6px;height:8px;margin:2px 0;'>"
             f"<div style='background:{_v_color};border-radius:6px;height:8px;width:{_vp:.0f}%;'></div></div>"
             f"<div style='font-size:10px;color:{_v_color};font-weight:700;'>{_vp:.0f}% (¥{shapley['流量效应']:+,.0f})</div></div>"
             f"<div style='flex:1;'><div style='font-size:10px;color:#475569;'>转化率</div>"
-            f"<div style='background:#e2e8f0;border-radius:6px;height:8px;margin:2px 0;'>"
+            f"<div style='background:#3a3a3a;border-radius:6px;height:8px;margin:2px 0;'>"
             f"<div style='background:{_c_color};border-radius:6px;height:8px;width:{_cp:.0f}%;'></div></div>"
             f"<div style='font-size:10px;color:{_c_color};font-weight:700;'>{_cp:.0f}% (¥{shapley['转化效应']:+,.0f})</div></div>"
             f"<div style='flex:1;'><div style='font-size:10px;color:#475569;'>客单价</div>"
-            f"<div style='background:#e2e8f0;border-radius:6px;height:8px;margin:2px 0;'>"
+            f"<div style='background:#3a3a3a;border-radius:6px;height:8px;margin:2px 0;'>"
             f"<div style='background:{_a_color};border-radius:6px;height:8px;width:{_ap:.0f}%;'></div></div>"
             f"<div style='font-size:10px;color:{_a_color};font-weight:700;'>{_ap:.0f}% (¥{shapley['客单效应']:+,.0f})</div></div>"
             f"</div></div>",
@@ -6378,8 +6378,8 @@ with tabs[4]:
     for col, (mname, mch, cv, pv, pre, ispct) in zip(kpi5_cols, _kpi5):
         with col:
             lvl = 'ok' if mch is None or mch > WARN_T else ('warn' if mch > DANGER_T else 'danger')
-            bg = {'danger':'#fef2f2','warn':'#fff7ed','ok':'#f0fdf4'}[lvl]
-            border = {'danger':'#fca5a5','warn':'#fdba74','ok':'#86efac'}[lvl]
+            bg = {'danger':'rgba(239,68,68,0.1)','warn':'rgba(249,115,22,0.1)','ok':'rgba(34,197,94,0.1)'}[lvl]
+            border = {'danger':'rgba(239,68,68,0.4)','warn':'rgba(249,115,22,0.4)','ok':'rgba(34,197,94,0.4)'}[lvl]
             cv_s = f'{cv:.2f}%' if ispct else f'{cv:,.0f}'
             pv_s = f'{pv:.2f}%' if ispct else f'{pv:,.0f}'
             ch_s = _pct(mch)
@@ -6395,8 +6395,8 @@ with tabs[4]:
                 f'<div style="background:{bg};border:1px solid {border};border-radius:14px;'
                 f'padding:10px;text-align:center;">'
                 f'<div style="font-size:11px;color:#64748b;font-weight:700;">{mname}</div>'
-                f'<div style="font-size:19px;font-weight:900;color:#0f172a;margin:3px 0;">{pre}{cv_s}</div>'
-                f'<div style="font-size:10px;color:#94a3b8;">vs上期 {pre}{pv_s} ({ch_s})</div>{hint}</div>',
+                f'<div style="font-size:19px;font-weight:900;color:#e5e5e5;margin:3px 0;">{pre}{cv_s}</div>'
+                f'<div style="font-size:10px;color:#8e8e93;">vs上期 {pre}{pv_s} ({ch_s})</div>{hint}</div>',
                 unsafe_allow_html=True)
 
     # ══════════════════════════════════════════════════════════════
@@ -6430,15 +6430,15 @@ with tabs[4]:
              ('支付转化率', _cur_cvr, _prev_cvr, True)]):
             chg = (cv - pv) / pv if pv else None
             lvl = 'ok' if chg is None or chg > WARN_T else ('warn' if chg > DANGER_T else 'danger')
-            bg = {'danger':'#fef2f2','warn':'#fff7ed','ok':'#f0fdf4'}[lvl]
-            brd = {'danger':'#fca5a5','warn':'#fdba74','ok':'#86efac'}[lvl]
+            bg = {'danger':'rgba(239,68,68,0.1)','warn':'rgba(249,115,22,0.1)','ok':'rgba(34,197,94,0.1)'}[lvl]
+            brd = {'danger':'rgba(239,68,68,0.4)','warn':'rgba(249,115,22,0.4)','ok':'rgba(34,197,94,0.4)'}[lvl]
             cvs = f'{cv:.2f}%' if is_pct else f'{cv:,.0f}'
             pvs = f'{pv:.2f}%' if is_pct else f'{pv:,.0f}'
             col.markdown(
                 f'<div style="background:{bg};border:1px solid {brd};border-radius:12px;padding:10px;text-align:center;">'
                 f'<div style="font-size:11px;color:#64748b;font-weight:600;">{lbl}</div>'
-                f'<div style="font-size:18px;font-weight:900;color:#0f172a;">{cvs}</div>'
-                f'<div style="font-size:10px;color:#94a3b8;">vs上期 {pvs} ({_pct(chg)})</div></div>',
+                f'<div style="font-size:18px;font-weight:900;color:#e5e5e5;">{cvs}</div>'
+                f'<div style="font-size:10px;color:#8e8e93;">vs上期 {pvs} ({_pct(chg)})</div></div>',
                 unsafe_allow_html=True)
 
         st.markdown('#### 📊 渠道流量分布与变化')
@@ -6988,13 +6988,13 @@ with tabs[4]:
             for col, (name, chg, cur_s, prev_s_) in zip(p_kpi_cols, _p_kpis):
                 with col:
                     _lvl = 'ok' if chg is None or chg > WARN_T else ('warn' if chg > DANGER_T else 'danger')
-                    _bg  = {'danger':'#fef2f2','warn':'#fff7ed','ok':'#f0fdf4'}[_lvl]
-                    _brd = {'danger':'#fca5a5','warn':'#fdba74','ok':'#86efac'}[_lvl]
+                    _bg  = {'danger':'rgba(239,68,68,0.1)','warn':'rgba(249,115,22,0.1)','ok':'rgba(34,197,94,0.1)'}[_lvl]
+                    _brd = {'danger':'rgba(239,68,68,0.4)','warn':'rgba(249,115,22,0.4)','ok':'rgba(34,197,94,0.4)'}[_lvl]
                     st.markdown(
                         f'<div style="background:{_bg};border:1px solid {_brd};border-radius:12px;padding:10px;text-align:center;">'
                         f'<div style="font-size:11px;color:#64748b;font-weight:700;">{name}</div>'
-                        f'<div style="font-size:18px;font-weight:900;color:#0f172a;">{cur_s}</div>'
-                        f'<div style="font-size:10px;color:#94a3b8;">vs上期 {prev_s_} ({_pct(chg)})</div></div>',
+                        f'<div style="font-size:18px;font-weight:900;color:#e5e5e5;">{cur_s}</div>'
+                        f'<div style="font-size:10px;color:#8e8e93;">vs上期 {prev_s_} ({_pct(chg)})</div></div>',
                         unsafe_allow_html=True)
 
             # 推广诊断建议
@@ -7554,27 +7554,27 @@ with tabs[4]:
         # ═══════════════════════════════════════
         # 🚨 List 1: 问题清单（P0/P1 立即行动）
         # ═══════════════════════════════════════
-        st.markdown("<div style='background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:6px 14px;margin:12px 0 6px 0;'>"
-                    "<b>🚨 问题清单</b> <small style='color:#94a3b8;'>— 已确认的异常，需立即处理</small></div>", unsafe_allow_html=True)
+        st.markdown("<div style='background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.4);border-radius:10px;padding:6px 14px;margin:12px 0 6px 0;'>"
+                    "<b>🚨 问题清单</b> <small style='color:#8e8e93;'>— 已确认的异常，需立即处理</small></div>", unsafe_allow_html=True)
 
         if _p0_actions:
             st.markdown("<div style='font-size:12px;color:#dc2626;font-weight:700;margin:4px 0;'>P0 紧急行动</div>", unsafe_allow_html=True)
         for act in _p0_actions:
             cls = {'P0':'tag-p0'}[act['p']]
             _rec_str = f' | 预期挽回: {act["r"]}' if act.get('r') else ''
-            with st.expander(f"<span class='action-tag {cls}'>{act['p']}</span> **{act['t']}** <small style='color:#94a3b8;'>| {act['o']} | 目标: {act['mt']} | 见效: {act['tl']}{_rec_str}</small>", expanded=True):
+            with st.expander(f"<span class='action-tag {cls}'>{act['p']}</span> **{act['t']}** <small style='color:#8e8e93;'>| {act['o']} | 目标: {act['mt']} | 见效: {act['tl']}{_rec_str}</small>", expanded=True):
                 st.markdown(act['d'], unsafe_allow_html=True)
 
         if _p1_actions:
             st.markdown("<div style='font-size:12px;color:#ea580c;font-weight:700;margin:8px 0 4px 0;'>P1 重点关注</div>", unsafe_allow_html=True)
         for act in _p1_actions:
             _rec_str = f' | 预期挽回: {act["r"]}' if act.get('r') else ''
-            with st.expander(f"<span class='action-tag tag-p1'>{act['p']}</span> **{act['t']}** <small style='color:#94a3b8;'>| {act['o']} | 目标: {act['mt']}{_rec_str}</small>", expanded=False):
+            with st.expander(f"<span class='action-tag tag-p1'>{act['p']}</span> **{act['t']}** <small style='color:#8e8e93;'>| {act['o']} | 目标: {act['mt']}{_rec_str}</small>", expanded=False):
                 st.markdown(act['d'], unsafe_allow_html=True)
 
         for act in _p23_actions:
             cls = {'P2':'tag-p2','P3':'tag-p3'}[act['p']]
-            with st.expander(f"<span class='action-tag {cls}'>{act['p']}</span> **{act['t']}** <small style='color:#94a3b8;'>| {act['o']}</small>", expanded=False):
+            with st.expander(f"<span class='action-tag {cls}'>{act['p']}</span> **{act['t']}** <small style='color:#8e8e93;'>| {act['o']}</small>", expanded=False):
                 st.markdown(act['d'], unsafe_allow_html=True)
 
         if not actions_sorted:
@@ -7623,8 +7623,8 @@ with tabs[4]:
                         })
 
         if risks:
-            st.markdown("<div style='background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:6px 14px;margin:16px 0 6px 0;'>"
-                        "<b>⚠️ 风险清单</b> <small style='color:#94a3b8;'>— 需持续监控，防止恶化</small></div>", unsafe_allow_html=True)
+            st.markdown("<div style='background:#1a1a1abeb;border:1px solid #fcd34d;border-radius:10px;padding:6px 14px;margin:16px 0 6px 0;'>"
+                        "<b>⚠️ 风险清单</b> <small style='color:#8e8e93;'>— 需持续监控，防止恶化</small></div>", unsafe_allow_html=True)
             _risk_rows = []
             for r in risks[:10]:
                 _risk_rows.append({
@@ -7636,7 +7636,7 @@ with tabs[4]:
                 })
             st.markdown(_html_table(_risk_rows, height=min(300, len(_risk_rows)*36+50)), unsafe_allow_html=True)
         else:
-            st.markdown("<div style='background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:6px 14px;margin:16px 0 6px 0;'>"
+            st.markdown("<div style='background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.4);border-radius:10px;padding:6px 14px;margin:16px 0 6px 0;'>"
                         "<b>✅ 风险清单</b> <small style='color:#64748b;'>— 当前未发现明确风险信号</small></div>", unsafe_allow_html=True)
 
         # ═══════════════════════════════════════
@@ -7673,8 +7673,8 @@ with tabs[4]:
 
         if opportunities:
             opp_display = opportunities[:8]
-            st.markdown("<div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:6px 14px;margin:16px 0 6px 0;'>"
-                        "<b>💡 机会清单</b> <small style='color:#94a3b8;'>— 可主动出击的增长机会</small></div>", unsafe_allow_html=True)
+            st.markdown("<div style='background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:10px;padding:6px 14px;margin:16px 0 6px 0;'>"
+                        "<b>💡 机会清单</b> <small style='color:#8e8e93;'>— 可主动出击的增长机会</small></div>", unsafe_allow_html=True)
             _opp_rows = []
             for o in opp_display:
                 _opp_rows.append({
@@ -7686,7 +7686,7 @@ with tabs[4]:
                 })
             st.markdown(_html_table(_opp_rows, height=min(300, len(_opp_rows)*36+50)), unsafe_allow_html=True)
         else:
-            st.markdown("<div style='background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:6px 14px;margin:16px 0 6px 0;'>"
+            st.markdown("<div style='background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.4);border-radius:10px;padding:6px 14px;margin:16px 0 6px 0;'>"
                         "<b>💡 机会清单</b> <small style='color:#64748b;'>— 暂未发现显著增长机会</small></div>", unsafe_allow_html=True)
 
         # 下载诊断报告
@@ -7957,7 +7957,7 @@ with tabs[5]:
 
         def _fmt_yoy(v):
             if v is None:
-                return '--', '#94a3b8'
+                return '--', '#8e8e93'
             sign = '+' if v >= 0 else ''
             color = '#22c55e' if v >= 0 else '#dc2626'
             return f'{sign}{v:.1f}%', color
@@ -7989,12 +7989,12 @@ with tabs[5]:
 
         _th_html = '<thead><tr>'
         for d in _p1_row_dims:
-            _th_html += '<th style="background:#e2e8f0;color:#1e293b;font-weight:600;padding:6px 10px;">' + d + '</th>'
+            _th_html += '<th style="background:#3a3a3a;color:#3a3a3a;font-weight:600;padding:6px 10px;">' + d + '</th>'
         for mc in _p1_cols:
-            _th_html += '<th style="background:#fef9c3;color:#1e293b;font-weight:600;text-align:right;padding:6px 10px;">' + mc + '</th>'
-        _th_html += '<th style="background:#dbeafe;color:#1e293b;font-weight:600;text-align:right;padding:6px 10px;">费率</th>'
+            _th_html += '<th style="background:#fef9c3;color:#3a3a3a;font-weight:600;text-align:right;padding:6px 10px;">' + mc + '</th>'
+        _th_html += '<th style="background:rgba(212,175,55,0.15);color:#3a3a3a;font-weight:600;text-align:right;padding:6px 10px;">费率</th>'
         for yc in _yoy_cols:
-            _th_html += '<th style="background:#fce7f3;color:#1e293b;font-weight:600;text-align:right;padding:6px 10px;">' + yc + '</th>'
+            _th_html += '<th style="background:#fce7f3;color:#3a3a3a;font-weight:600;text-align:right;padding:6px 10px;">' + yc + '</th>'
         _th_html += '</tr></thead>'
 
         _tb_html = '<tbody>'
@@ -8012,7 +8012,7 @@ with tabs[5]:
                 _ys, _yc = _fmt_yoy(_yv)
                 _tb_html += '<td style="text-align:right;padding:5px 10px;color:' + _yc + ';">' + _ys + '</td>'
             _tb_html += '</tr>'
-        _tb_html += '<tr style="background:#fff7ed;font-weight:bold;">'
+        _tb_html += '<tr style="background:rgba(249,115,22,0.1);font-weight:bold;">'
         for i, d in enumerate(_p1_row_dims):
             _tb_html += '<td style="padding:5px 10px;">' + ('合计' if i == 0 else '') + '</td>'
         for mc in _p1_cols:
@@ -8275,7 +8275,7 @@ with tabs[5]:
 
         def _fmt_p2_yoy(v):
             if v is None:
-                return '--', '#94a3b8'
+                return '--', '#8e8e93'
             sign = '+' if v >= 0 else ''
             color = '#22c55e' if v >= 0 else '#dc2626'
             return f'{sign}{v:.1f}%', color
@@ -8287,12 +8287,12 @@ with tabs[5]:
         _th_html = '<thead><tr>'
         for d in _p2_row_dims:
             _label = d.lstrip('_')
-            _th_html += '<th style="background:#e2e8f0;color:#1e293b;font-weight:600;padding:6px 10px;">' + _label + '</th>'
+            _th_html += '<th style="background:#3a3a3a;color:#3a3a3a;font-weight:600;padding:6px 10px;">' + _label + '</th>'
         for mc in _p2_cols:
             _label = mc.lstrip('_')
-            _th_html += '<th style="background:#dbeafe;color:#1e293b;font-weight:600;text-align:right;padding:6px 10px;">' + _label + '</th>'
+            _th_html += '<th style="background:rgba(212,175,55,0.15);color:#3a3a3a;font-weight:600;text-align:right;padding:6px 10px;">' + _label + '</th>'
         for yc in _p2_yoy_cols:
-            _th_html += '<th style="background:#fce7f3;color:#1e293b;font-weight:600;text-align:right;padding:6px 10px;">' + yc + '</th>'
+            _th_html += '<th style="background:#fce7f3;color:#3a3a3a;font-weight:600;text-align:right;padding:6px 10px;">' + yc + '</th>'
         _th_html += '</tr></thead>'
 
         _tb_html = '<tbody>'
@@ -8308,7 +8308,7 @@ with tabs[5]:
                 _ys, _yc = _fmt_p2_yoy(_yv)
                 _tb_html += '<td style="text-align:right;padding:5px 10px;color:' + _yc + ';">' + _ys + '</td>'
             _tb_html += '</tr>'
-        _tb_html += '<tr style="background:#fff7ed;font-weight:bold;">'
+        _tb_html += '<tr style="background:rgba(249,115,22,0.1);font-weight:bold;">'
         for i, d in enumerate(_p2_row_dims):
             _tb_html += '<td style="padding:5px 10px;">' + ('合计' if i == 0 else '') + '</td>'
         for mc in _p2_cols:
@@ -8858,7 +8858,7 @@ with tabs[6]:
             def _yoy_color(v):
                 """同比颜色"""
                 if v is None:
-                    return '#94a3b8'
+                    return '#8e8e93'
                 return '#22c55e' if v >= 0 else '#ef4444'
 
             import uuid as _uuid_mod
@@ -8963,7 +8963,7 @@ with tabs[6]:
                 fs_btn = (
                     f'<button class="_fs-btn" data-fs-id="{tbl_id}" data-fs-title="{title}" '
                     f'style="float:right;margin-bottom:4px;padding:3px 10px;font-size:12px;'
-                    f'background:#1d4ed8;color:#fff;border:none;border-radius:4px;cursor:pointer;">⛶ 全屏</button>'
+                    f'background:#D4AF37;color:#fff;border:none;border-radius:4px;cursor:pointer;">⛶ 全屏</button>'
                 )
                 html = f'<div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;font-size:14px;">{title}</span>{fs_btn}</div>'
                 html += f'<div id="{tbl_id}" class="styled-table-wrap"><table class="styled-table">'
@@ -9361,11 +9361,11 @@ with tabs[6]:
                     # 销额进度条: 实际/目标
                     sales_prog = min(s['amt_actual'] / s['amt_target'] * 100, 100) if s['amt_target'] > 0 else 0
                     sales_prog_color = '#22c55e' if sales_prog >= 100 else '#f59e0b' if sales_prog >= 70 else '#ef4444'
-                    sales_prog_html = f'<div style="background:#e5e7eb;border-radius:4px;height:10px;width:80px;display:inline-block;vertical-align:middle;"><div style="width:{sales_prog:.0f}%;background:{sales_prog_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{sales_prog_color};">{sales_prog:.1f}%</span>'
+                    sales_prog_html = f'<div style="background:#3a3a3a;border-radius:4px;height:10px;width:80px;display:inline-block;vertical-align:middle;"><div style="width:{sales_prog:.0f}%;background:{sales_prog_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{sales_prog_color};">{sales_prog:.1f}%</span>'
                     # 花费进度条: 实际/预算
                     spend_prog = min(s['spend_actual'] / s['spend_budget'] * 100, 100) if s['spend_budget'] > 0 else 0
                     spend_prog_color = '#22c55e' if spend_prog <= 105 else '#f59e0b' if spend_prog <= 120 else '#ef4444'
-                    spend_prog_html = f'<div style="background:#e5e7eb;border-radius:4px;height:10px;width:80px;display:inline-block;vertical-align:middle;"><div style="width:{spend_prog:.0f}%;background:{spend_prog_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{spend_prog_color};">{spend_prog:.1f}%</span>'
+                    spend_prog_html = f'<div style="background:#3a3a3a;border-radius:4px;height:10px;width:80px;display:inline-block;vertical-align:middle;"><div style="width:{spend_prog:.0f}%;background:{spend_prog_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{spend_prog_color};">{spend_prog:.1f}%</span>'
                     # ── 同比计算 ──
                     yoy_amt_target = _yoy_pct_val(s['amt_target'], s['amt_target_ly'])
                     yoy_amt_actual = _yoy_pct_val(s['amt_actual'], s['amt_actual_ly'])
@@ -9406,10 +9406,10 @@ with tabs[6]:
                     _tt_actual_rate_ly = total_spend_actual_ly / total_amt_actual_ly * 100 if total_amt_actual_ly > 0 else 0
                     _tt_sales_prog = min(total_amt_actual / total_amt_target * 100, 100) if total_amt_target > 0 else 0
                     _tt_sales_prog_color = '#22c55e' if _tt_sales_prog >= 100 else '#f59e0b' if _tt_sales_prog >= 70 else '#ef4444'
-                    _tt_sales_prog_html = f'<div style="background:#e5e7eb;border-radius:4px;height:10px;width:80px;display:inline-block;vertical-align:middle;"><div style="width:{_tt_sales_prog:.0f}%;background:{_tt_sales_prog_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{_tt_sales_prog_color};">{_tt_sales_prog:.1f}%</span>'
+                    _tt_sales_prog_html = f'<div style="background:#3a3a3a;border-radius:4px;height:10px;width:80px;display:inline-block;vertical-align:middle;"><div style="width:{_tt_sales_prog:.0f}%;background:{_tt_sales_prog_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{_tt_sales_prog_color};">{_tt_sales_prog:.1f}%</span>'
                     _tt_spend_prog = min(total_spend_actual / total_spend_budget * 100, 100) if total_spend_budget > 0 else 0
                     _tt_spend_prog_color = '#22c55e' if _tt_spend_prog <= 105 else '#f59e0b' if _tt_spend_prog <= 120 else '#ef4444'
-                    _tt_spend_prog_html = f'<div style="background:#e5e7eb;border-radius:4px;height:10px;width:80px;display:inline-block;vertical-align:middle;"><div style="width:{_tt_spend_prog:.0f}%;background:{_tt_spend_prog_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{_tt_spend_prog_color};">{_tt_spend_prog:.1f}%</span>'
+                    _tt_spend_prog_html = f'<div style="background:#3a3a3a;border-radius:4px;height:10px;width:80px;display:inline-block;vertical-align:middle;"><div style="width:{_tt_spend_prog:.0f}%;background:{_tt_spend_prog_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{_tt_spend_prog_color};">{_tt_spend_prog:.1f}%</span>'
                     _tt_yoy_amt_target = _yoy_pct_val(total_amt_target, total_amt_target_ly)
                     _tt_yoy_amt_actual = _yoy_pct_val(total_amt_actual, total_amt_actual_ly)
                     _tt_yoy_spend_budget = _yoy_pct_val(total_spend_budget, total_spend_budget_ly)
@@ -9465,7 +9465,7 @@ with tabs[6]:
                                     color = '#22c55e' if v >= 0 else '#ef4444'
                                     style += f'color:{color};font-weight:bold;'
                                 except:
-                                    style += 'color:#94a3b8;'
+                                    style += 'color:#8e8e93;'
                             html += f'<td style="{style}">{cell}</td>'
                         html += '</tr>'
                     html += '</tbody></table></div>'
@@ -9552,11 +9552,11 @@ with tabs[6]:
                         # 销额进度条
                         sales_prog = min(amt_actual / amt_target * 100, 100) if amt_target > 0 else 0
                         sp_color = '#22c55e' if sales_prog >= 100 else '#f59e0b' if sales_prog >= 70 else '#ef4444'
-                        sales_prog_html = f'<div style="background:#e5e7eb;border-radius:4px;height:10px;width:70px;display:inline-block;vertical-align:middle;"><div style="width:{sales_prog:.0f}%;background:{sp_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{sp_color};">{sales_prog:.1f}%</span>'
+                        sales_prog_html = f'<div style="background:#3a3a3a;border-radius:4px;height:10px;width:70px;display:inline-block;vertical-align:middle;"><div style="width:{sales_prog:.0f}%;background:{sp_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{sp_color};">{sales_prog:.1f}%</span>'
                         # 花费进度条
                         spend_prog = min(spend_actual / spend_budget * 100, 100) if spend_budget > 0 else 0
                         ep_color = '#22c55e' if spend_prog <= 105 else '#f59e0b' if spend_prog <= 120 else '#ef4444'
-                        spend_prog_html = f'<div style="background:#e5e7eb;border-radius:4px;height:10px;width:70px;display:inline-block;vertical-align:middle;"><div style="width:{spend_prog:.0f}%;background:{ep_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{ep_color};">{spend_prog:.1f}%</span>'
+                        spend_prog_html = f'<div style="background:#3a3a3a;border-radius:4px;height:10px;width:70px;display:inline-block;vertical-align:middle;"><div style="width:{spend_prog:.0f}%;background:{ep_color};height:10px;border-radius:4px;"></div></div> <span style="font-size:11px;color:{ep_color};">{spend_prog:.1f}%</span>'
                         # 去年同期费率
                         budget_rate_ly = spend_budget_ly / amt_target_ly * 100 if amt_target_ly > 0 else 0
                         actual_rate_ly = spend_actual_ly / amt_actual_ly * 100 if amt_actual_ly > 0 else 0
@@ -9619,7 +9619,7 @@ with tabs[6]:
                                         color = '#22c55e' if v >= 0 else '#ef4444'
                                         style += f'color:{color};font-weight:bold;'
                                     except:
-                                        style += 'color:#94a3b8;'
+                                        style += 'color:#8e8e93;'
                                 html += f'<td style="{style}">{cell}</td>'
                             html += '</tr>'
                         html += '</tbody></table></div>'
