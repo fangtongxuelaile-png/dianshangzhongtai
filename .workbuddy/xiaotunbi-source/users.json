@@ -1,0 +1,16 @@
+{
+  "admin_email": "admin@xiaotun.com",
+  "users": {
+    "gwell": {
+      "password_hash": "b9d059f0d2d7f6935136a15ca328be917e3b24dc009ba56e5a3384cf282d4b02",
+      "role": "admin",
+      "display_name": "管理员"
+    },
+    "viewer": {
+      "password_hash": "8e6b782eac3016ec711ec7193bdc5c529ab3accac774929332d08fe79adf2b36",
+      "role": "viewer",
+      "display_name": "浏览者",
+      "expire_date": "2027-12-31"
+    }
+  }
+}
