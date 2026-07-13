@@ -203,15 +203,24 @@ st.set_page_config(page_title='小豚当家BI看板', layout='wide', initial_sid
 
 # 防御性 session state 预初始化（防止 Streamlit "SessionInfo not initialized" 错误）
 try:
-    for _k, _v in [('authenticated', False), ('username', ''), ('role', '')]:
+    for _k, _v in [('authenticated', False), ('username', ''), ('role', ''), ('theme', 'dark')]:
         if _k not in st.session_state:
             st.session_state[_k] = _v
 except Exception:
     pass  # SessionInfo 尚未就绪，widget 首次渲染时会自动创建
 
-CSS = '''
+_IS_DARK = st.session_state.get('theme', 'dark') == 'dark'
+PLOTLY_TEMPLATE = 'plotly_dark' if _IS_DARK else 'plotly_white'
+_MPL_FACE = '#252525' if _IS_DARK else '#ffffff'
+_MPL_TEXT = '#f5f5f5' if _IS_DARK else '#1a1a1a'
+
+if _IS_DARK:
+    CSS = '''
 <style>
 :root {--gold:#D4AF37;--gold-dark:#B8960F;--cyan:#06b6d4;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--muted:#8e8e93;--bg:#1a1a1a;--bg-card:#252525;--bg-hover:#2a2a2a;--border:#3a3a3a;--text:#e5e5e5;--text-dim:#8e8e93;}
+.stApp {background-color: #1a1a1a; color: #e5e5e5;}
+.stApp p, .stApp span, .stApp li {color: #e5e5e5 !important;}
+.stApp h1, .stApp h2, .stApp h3, .stApp h4 {color: #f5f5f5 !important;}
 .block-container {padding-top: 1.1rem; padding-bottom: 2rem; max-width: 1800px;}
 [data-testid="stSidebar"] {background: #0d0d0d;}
 [data-testid="stSidebar"] * {color: #e5e5e5;}
@@ -248,35 +257,110 @@ CSS = '''
 .tag-p1 {background:rgba(249,115,22,.15);color:#f97316;border:1px solid rgba(249,115,22,.3);}
 .tag-p2 {background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3);}
 .tag-p3 {background:rgba(34,197,94,.15);color:#22c55e;border:1px solid rgba(34,197,94,.3);}
-/* 自定义HTML表格样式 */
 .styled-table-wrap {overflow-x:auto; border-radius:12px; border:1px solid #3a3a3a; margin-top:6px;}
 .styled-table {width:100%; border-collapse:collapse; font-size:12.5px;}
 .styled-table thead th {background:#D4AF37; color:#1a1a1a; font-weight:700; text-align:left; padding:9px 10px; white-space:nowrap; position:sticky; top:0; z-index:1;}
 .styled-table tbody td {padding:7px 10px; border-bottom:1px solid #3a3a3a; vertical-align:middle; color:#e5e5e5;}
 .styled-table tbody tr:hover {background:#252525;}
 .styled-table td span {white-space:normal;}
-/* 侧边栏文件上传区 & 按钮文字修复（深色背景下看不清） */
 [data-testid="stSidebar"] [data-testid="stFileUploader"] * {color: #e5e5e5 !important;}
 [data-testid="stSidebar"] [data-testid="stFileUploader"] {background: #1e1e1e; border: 1px dashed rgba(212,175,55,.4) !important; border-radius: 12px;}
 [data-testid="stSidebar"] [data-testid="stFileUploader"] small {color: #8e8e93 !important;}
-/* 隐藏英文拖拽提示，用CSS伪元素覆盖为中文 */
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span[data-testid="stFileUploaderDropzoneInstructions"] > div > span:first-child {font-size: 0;}
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span[data-testid="stFileUploaderDropzoneInstructions"] > div > span:first-child::after {content: "拖拽文件到此处"; font-size: 14px; color: #D4AF37;}
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] small {font-size: 0 !important;}
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] small::after {content: "每个文件限 500MB • XLSX"; font-size: 12px; color: #8e8e93;}
-/* Browse files 按钮汉化 */
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] button[data-testid="stBaseButton-secondary"] {font-size: 0 !important;}
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] button[data-testid="stBaseButton-secondary"]::after {content: "选择文件"; font-size: 14px; color: #D4AF37 !important;}
-/* 同步按钮和退出登录按钮 - 暗金风格 */
 [data-testid="stSidebar"] button {color: #e5e5e5 !important; font-weight: 600;}
 [data-testid="stSidebar"] button p {color: #e5e5e5 !important;}
 [data-testid="stSidebar"] button span {color: #e5e5e5 !important;}
 [data-testid="stSidebar"] .stButton button {background: #252525 !important; color: #D4AF37 !important; border: 1px solid #D4AF37 !important;}
 [data-testid="stSidebar"] .stButton button:hover {background: #2a2520 !important; border-color: #B8960F !important;}
 [data-testid="stSidebar"] .stButton button * {color: #D4AF37 !important;}
+/* 原生组件暗色覆盖 */
+[data-testid="stTextInput"] input, [data-testid="stNumberInput"] input, [data-testid="stDateInput"] input {background-color: #252525 !important; color: #e5e5e5 !important; border-color: #3a3a3a !important;}
+[data-testid="stSelectbox"] > div > div {background-color: #252525 !important; color: #e5e5e5 !important;}
+[data-testid="stSelectbox"] svg {fill: #8e8e93 !important;}
+[data-testid="stRadio"] label {color: #e5e5e5 !important;}
+</style>
+'''
+else:
+    CSS = '''
+<style>
+:root {--gold:#D4AF37;--gold-dark:#B8960F;--cyan:#06b6d4;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--muted:#8e8e93;--bg:#ffffff;--bg-card:#fafafa;--bg-hover:#f0f0f0;--border:#e0e0e0;--text:#1a1a1a;--text-dim:#666666;}
+.block-container {padding-top: 1.1rem; padding-bottom: 2rem; max-width: 1800px;}
+[data-testid="stSidebar"] {background: #f8f8f8;}
+[data-testid="stSidebar"] * {color: #1a1a1a;}
+[data-testid="stFileUploader"] {border: 1px dashed rgba(212,175,55,.4); border-radius: 16px; padding: 8px;}
+.hero {border-radius: 28px; padding: 24px 28px; margin-bottom: 16px; color: #1a1a1a; background: radial-gradient(circle at 12% 18%, rgba(212,175,55,.08), transparent 30%), linear-gradient(135deg,#ffffff 0%, #fafafa 52%, #f5f0e0 100%); box-shadow: 0 8px 24px rgba(0,0,0,.08); border: 1px solid rgba(212,175,55,.2);}
+.hero-title {font-size: 31px; font-weight: 900; margin: 0; letter-spacing: .5px; color: #1a1a1a;}
+.hero-sub {color: #666666; margin-top: 8px; font-size: 14px;}
+.badge {display:inline-block; padding: 5px 10px; border-radius: 999px; background: rgba(212,175,55,.1); border:1px solid rgba(212,175,55,.35); margin-right:8px; font-size:12px; color:#B8960F;}
+.section-title {font-size: 18px; font-weight: 800; margin: 16px 0 8px; color: #1a1a1a;}
+[data-testid="stMetric"] {background: linear-gradient(180deg,#ffffff,#fafafa); border: 1px solid #e0e0e0; padding: 15px 16px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,.05);}
+[data-testid="stMetricLabel"] {color:#666666;}
+[data-testid="stMetricValue"] {font-size: 25px; font-weight: 900; color: #1a1a1a;}
+.card-note {font-size: 13px; color:#666666; margin-top:-4px;}
+.stTabs [data-baseweb="tab-list"] {gap: 8px;}
+.stTabs [data-baseweb="tab"] {background:#f5f5f5; border-radius:999px; padding: 8px 16px; color: #666666;}
+.stTabs [aria-selected="true"] {background:rgba(212,175,55,.15); color:#B8960F;}
+.comp-card {background:#fafafa; border:1px solid #e0e0e0; border-radius:16px; padding:16px; margin-bottom:8px;}
+.comp-period {font-size:13px; color:#666666; margin-bottom:4px;}
+.comp-value {font-size:22px; font-weight:900; color:#B8960F;}
+.delta-up {color:#16a34a; font-weight:700;}
+.delta-down {color:#dc2626; font-weight:700;}
+.diag-card {border-radius:16px; padding:16px; margin-bottom:12px;}
+.diag-warn {background:#fff7ed; border:1px solid #fdba74;}
+.diag-ok {background:#f0fdf4; border:1px solid #86efac;}
+.diag-danger {background:#fef2f2; border:1px solid #fca5a5;}
+.diag-title {font-weight:800; font-size:15px; margin-bottom:4px; color: #1a1a1a;}
+.diag-body {font-size:13px; color:#374151; line-height:1.7;}
+.drill-table {width:100%; border-collapse:collapse; font-size:12.5px; margin-top:8px;}
+.drill-table th {background:rgba(212,175,55,.1); font-weight:700; text-align:left; padding:6px 10px; border-bottom:2px solid #D4AF37; color:#B8960F;}
+.drill-table td {padding:5px 10px; border-bottom:1px solid #e0e0e0; white-space:nowrap; overflow:hidden; max-width:200px;text-overflow:ellipsis; color:#1a1a1a;}
+.drill-table tr:hover {background:#fafafa;}
+.action-tag {display:inline-block; padding:3px 10px; border-radius:999px; font-size:11px; font-weight:600; margin:2px 3px 2px 0;}
+.tag-p0 {background:#fee2e2;color:#dc2626;border:1px solid #fecaca;}
+.tag-p1 {background:rgba(249,115,22,.12);color:#ea580c;border:1px solid rgba(249,115,22,.3);}
+.tag-p2 {background:#fefce8;color:#ca8a04;border:1px solid #fde68a;}
+.tag-p3 {background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;}
+.styled-table-wrap {overflow-x:auto; border-radius:12px; border:1px solid #e0e0e0; margin-top:6px;}
+.styled-table {width:100%; border-collapse:collapse; font-size:12.5px;}
+.styled-table thead th {background:#D4AF37; color:#1a1a1a; font-weight:700; text-align:left; padding:9px 10px; white-space:nowrap; position:sticky; top:0; z-index:1;}
+.styled-table tbody td {padding:7px 10px; border-bottom:1px solid #e0e0e0; vertical-align:middle; color:#1a1a1a;}
+.styled-table tbody tr:hover {background:#fafafa;}
+.styled-table td span {white-space:normal;}
+[data-testid="stSidebar"] [data-testid="stFileUploader"] * {color: #1a1a1a !important;}
+[data-testid="stSidebar"] [data-testid="stFileUploader"] {background: #f0f0f0; border: 1px dashed rgba(212,175,55,.5) !important; border-radius: 12px;}
+[data-testid="stSidebar"] [data-testid="stFileUploader"] small {color: #666666 !important;}
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span[data-testid="stFileUploaderDropzoneInstructions"] > div > span:first-child {font-size: 0;}
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span[data-testid="stFileUploaderDropzoneInstructions"] > div > span:first-child::after {content: "拖拽文件到此处"; font-size: 14px; color: #B8960F;}
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] small {font-size: 0 !important;}
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] small::after {content: "每个文件限 500MB • XLSX"; font-size: 12px; color: #666666;}
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] button[data-testid="stBaseButton-secondary"] {font-size: 0 !important;}
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] button[data-testid="stBaseButton-secondary"]::after {content: "选择文件"; font-size: 14px; color: #B8960F !important;}
+[data-testid="stSidebar"] button {color: #1a1a1a !important; font-weight: 600;}
+[data-testid="stSidebar"] button p {color: #1a1a1a !important;}
+[data-testid="stSidebar"] button span {color: #1a1a1a !important;}
+[data-testid="stSidebar"] .stButton button {background: #ffffff !important; color: #B8960F !important; border: 1px solid #D4AF37 !important;}
+[data-testid="stSidebar"] .stButton button:hover {background: #faf8f0 !important; border-color: #B8960F !important;}
+[data-testid="stSidebar"] .stButton button * {color: #B8960F !important;}
 </style>
 '''
 st.markdown(CSS, unsafe_allow_html=True)
+
+# 主题切换开关（登录页也可用）
+with st.sidebar:
+    _t1, _t2 = st.columns(2)
+    with _t1:
+        if st.button('☀️ 白底', use_container_width=True, key='theme_btn_light'):
+            st.session_state.theme = 'light'
+            st.rerun()
+    with _t2:
+        if st.button('🌙 暗黑', use_container_width=True, key='theme_btn_dark'):
+            st.session_state.theme = 'dark'
+            st.rerun()
 
 # ── 权限验证 ──
 import hashlib, json as _json_lib
@@ -2311,7 +2395,7 @@ def _generate_mckinsey_ppt(**kwargs):
         """matplotlib → PNG bytes（白底，高密度）"""
         buf = io.BytesIO()
         fig.savefig(buf, format='png', dpi=180, bbox_inches='tight',
-                     facecolor='#252525', edgecolor='none')
+                     facecolor=_MPL_FACE, edgecolor='none')
         buf.seek(0); plt.close(fig)
         return buf
 
@@ -3009,7 +3093,7 @@ with tabs[0]:
             text=bar_texts, textposition='outside',
             marker_color='#3b82f6'))
         fig_a.update_layout(
-            title=f'支付金额趋势（{_ov_gran}）', height=340, template='plotly_dark',
+            title=f'支付金额趋势（{_ov_gran}）', height=340, template=PLOTLY_TEMPLATE,
             margin=dict(l=20, r=20, t=45, b=20),
             yaxis_title=f'支付金额({amt_unit})', showlegend=False)
         st.plotly_chart(fig_a, width="stretch")
@@ -3029,7 +3113,7 @@ with tabs[0]:
             line=dict(color='#06b6d4', width=2),
             marker=dict(size=5)))
         fig_b.update_layout(
-            title=f'访客数趋势（{_ov_gran}）', height=340, template='plotly_dark',
+            title=f'访客数趋势（{_ov_gran}）', height=340, template=PLOTLY_TEMPLATE,
             margin=dict(l=20, r=20, t=45, b=20),
             yaxis_title='访客数', showlegend=False)
         st.plotly_chart(fig_b, width="stretch")
@@ -3050,7 +3134,7 @@ with tabs[0]:
             fill='tozeroy', fillcolor='rgba(245,158,11,0.15)',
             marker=dict(size=5)))
         fig_c.update_layout(
-            title=f'支付转化率趋势（{_ov_gran}）', height=340, template='plotly_dark',
+            title=f'支付转化率趋势（{_ov_gran}）', height=340, template=PLOTLY_TEMPLATE,
             margin=dict(l=20, r=20, t=45, b=20),
             yaxis_title='转化率(%)', showlegend=False)
         st.plotly_chart(fig_c, width="stretch")
@@ -3073,7 +3157,7 @@ with tabs[0]:
                                       name='访客数', yaxis='y2', line=dict(color='#06b6d4', width=3)))
             fig.add_trace(go.Scatter(x=[r['月份'][:4]+'/'+r['月份'][5:7] for r in trend], y=[r['支付件数'] for r in trend],
                                       name='支付件数', yaxis='y2', line=dict(color='#22c55e', width=3)))
-        fig.update_layout(height=390, template='plotly_dark', margin=dict(l=20, r=20, t=35, b=20),
+        fig.update_layout(height=390, template=PLOTLY_TEMPLATE, margin=dict(l=20, r=20, t=35, b=20),
                           legend=dict(orientation='h'), yaxis_title='支付金额(万)',
                           yaxis2=dict(title='流量/销量', overlaying='y', side='right'))
         st.plotly_chart(fig, width="stretch")
@@ -3103,7 +3187,7 @@ with tabs[0]:
             textposition='outside',
             marker=dict(color=px.colors.qualitative.Bold[:len(sr)])))
         fig.update_layout(height=430, margin=dict(l=10, r=80, t=35, b=10),
-                          title='店铺销售排行', template='plotly_dark',
+                          title='店铺销售排行', template=PLOTLY_TEMPLATE,
                           yaxis=dict(categoryorder='total ascending'),
                           xaxis=dict(title='支付金额(万)', showgrid=True))
         st.plotly_chart(fig, width="stretch")
@@ -3119,7 +3203,7 @@ with tabs[0]:
             textposition='outside',
             marker=dict(color=px.colors.qualitative.Pastel[:len(cr)])))
         fig.update_layout(height=430, margin=dict(l=10, r=80, t=35, b=10),
-                          title='品类销售排行', template='plotly_dark',
+                          title='品类销售排行', template=PLOTLY_TEMPLATE,
                           yaxis=dict(categoryorder='total ascending'),
                           xaxis=dict(title='支付金额(万)', showgrid=True))
         st.plotly_chart(fig, width="stretch")
@@ -3135,7 +3219,7 @@ with tabs[0]:
             textposition='outside',
             marker=dict(color=px.colors.qualitative.Set2[:len(model_rows)])))
         fig.update_layout(height=430, margin=dict(l=10, r=80, t=35, b=10),
-                          title='销额TOP10单品', template='plotly_dark',
+                          title='销额TOP10单品', template=PLOTLY_TEMPLATE,
                           yaxis=dict(categoryorder='total ascending'),
                           xaxis=dict(title='支付金额(万)', showgrid=True))
         st.plotly_chart(fig, width="stretch")
@@ -3232,7 +3316,7 @@ with tabs[1]:
                                   name='推广费(万)', marker_color='#f59e0b', opacity=0.85))
             fig.add_trace(go.Scatter(x=[x[0] for x in _pr_s], y=[x[1]['总订单金额']/10000 for x in _pr_s],
                                      name='总订单金额(万)', yaxis='y2', line=dict(color='#10b981', width=2)))
-            fig.update_layout(height=360, template='plotly_dark', legend=dict(orientation='h'),
+            fig.update_layout(height=360, template=PLOTLY_TEMPLATE, legend=dict(orientation='h'),
                                   yaxis_title='推广费(万)', yaxis2=dict(title='订单金额(万)', overlaying='y', side='right'))
             st.plotly_chart(fig, width="stretch")
             _render_download_panel([{'日期': x[0], '花费': x[1]['花费'], '总订单金额': x[1]['总订单金额']} for x in _pr_s],
@@ -3254,7 +3338,7 @@ with tabs[1]:
             _roi_v = [{_x_label: x[0], 'ROI': x[1]['总订单金额']/x[1]['花费'] if x[1]['花费'] else 0} for x in _roi_s]
             fig = px.line(pd.DataFrame(_roi_v), x=_x_label, y='ROI', markers=True,
                               title=f'{_gran_label}ROI趋势', line_shape='spline')
-            fig.update_layout(height=320, template='plotly_dark', yaxis_title='ROI')
+            fig.update_layout(height=320, template=PLOTLY_TEMPLATE, yaxis_title='ROI')
             st.plotly_chart(fig, width="stretch")
             _render_download_panel([{'日期': x[0], '花费': x[1]['花费'], '总订单金额': x[1]['总订单金额'],
                                    'ROI': x[1]['总订单金额']/x[1]['花费'] if x[1]['花费'] else 0} for x in _roi_s],
@@ -3273,7 +3357,7 @@ with tabs[1]:
             fig = px.scatter(_df, x='花费', y='总订单金额', size='总订单金额',
                                      hover_data=['推广计划', 'ROI'], title='推广计划效率矩阵（花费 vs 成交金额）',
                                      color='ROI', color_continuous_scale='RdYlGn')
-            fig.update_layout(height=400, template='plotly_dark')
+            fig.update_layout(height=400, template=PLOTLY_TEMPLATE)
             st.plotly_chart(fig, width="stretch")
             _render_download_panel(_pl_r, ['推广计划', '花费', '总订单金额', 'ROI'], 'promo_plan_efficiency.csv', '📥 推广计划效率')
 
@@ -3354,7 +3438,7 @@ with tabs[1]:
                     textposition='outside',
                     marker=dict(color=px.colors.qualitative.Pastel[:len(_sm_r)])))
                 fig.update_layout(height=max(280, len(_sm_r)*45), margin=dict(l=10, r=80, t=35, b=10),
-                                   title='各店铺推广花费', template='plotly_dark',
+                                   title='各店铺推广花费', template=PLOTLY_TEMPLATE,
                                    yaxis=dict(categoryorder='total ascending'))
                 st.plotly_chart(fig, width="stretch")
                 _render_download_panel(_sm_r, list(_sm_r[0].keys()), 'promo_store_spend.csv', '📥 店铺推广费')
@@ -3369,7 +3453,7 @@ with tabs[1]:
                     textposition='outside',
                     marker=dict(color=_colors_roi)))
                 fig.update_layout(height=max(280, len(_sm_r)*45), margin=dict(l=10, r=80, t=35, b=10),
-                                   title='各店铺ROI（绿≥3 橙≥1 红<1）', template='plotly_dark',
+                                   title='各店铺ROI（绿≥3 橙≥1 红<1）', template=PLOTLY_TEMPLATE,
                                    yaxis=dict(categoryorder='total ascending'))
                 st.plotly_chart(fig, width="stretch")
                 _render_download_panel(_sm_r, list(_sm_r[0].keys()), 'promo_store_roi.csv', '📥 店铺ROI')
@@ -3443,7 +3527,7 @@ with tabs[1]:
                 fig = go.Figure()
                 fig.add_trace(go.Bar(name='ROI', x=[x['渠道'] for x in _cm_r], y=_roi_cur, marker_color='#D4AF37'))
                 fig.add_trace(go.Bar(name='直接ROI', x=[x['渠道'] for x in _cm_r], y=_droi_cur, marker_color='#06b6d4'))
-                fig.update_layout(height=340, barmode='group', template='plotly_dark', title='渠道ROI对比')
+                fig.update_layout(height=340, barmode='group', template=PLOTLY_TEMPLATE, title='渠道ROI对比')
                 st.plotly_chart(fig, width="stretch")
                 _render_download_panel(_cm_r, list(_cm_r[0].keys()), 'promo_chan_roi.csv', '📥 渠道ROI对比')
             _cols = list(_cm_r[0].keys())
@@ -3463,7 +3547,7 @@ with tabs[1]:
                 textposition='outside',
                 marker=dict(color=px.colors.qualitative.Bold[:len(_tp)])))
             fig.update_layout(height=400, margin=dict(l=10, r=80, t=35, b=10),
-                               title='TOP10 推广计划（按花费）', template='plotly_dark',
+                               title='TOP10 推广计划（按花费）', template=PLOTLY_TEMPLATE,
                                yaxis=dict(categoryorder='total ascending'),
                                xaxis=dict(title='花费(万)', showgrid=True))
             st.plotly_chart(fig, width="stretch")
@@ -3574,7 +3658,7 @@ with tabs[1]:
                     textposition='outside',
                     marker=dict(color=px.colors.qualitative.Bold[:len(_top10)])))
                 fig.update_layout(height=max(300, len(_top10)*40), margin=dict(l=10, r=80, t=35, b=10),
-                                   title='TOP10 单品推广花费', template='plotly_dark',
+                                   title='TOP10 单品推广花费', template=PLOTLY_TEMPLATE,
                                    yaxis=dict(categoryorder='total ascending'))
                 st.plotly_chart(fig, width="stretch")
                 _render_download_panel(_top10, ['单品', '花费', '总订单金额', 'ROI'], 'promo_sku_spend.csv', '📥 TOP10单品推广费')
@@ -3589,7 +3673,7 @@ with tabs[1]:
                     textposition='outside',
                     marker=dict(color=_colors)))
                 fig.update_layout(height=max(300, len(_sku_r[:10])*40), margin=dict(l=10, r=80, t=35, b=10),
-                                   title='TOP10 单品ROI（绿≥3 橙≥1 红&lt;1）', template='plotly_dark',
+                                   title='TOP10 单品ROI（绿≥3 橙≥1 红&lt;1）', template=PLOTLY_TEMPLATE,
                                    yaxis=dict(categoryorder='total ascending'))
                 st.plotly_chart(fig, width="stretch")
             _cols = list(_sku_r[0].keys())
@@ -3985,7 +4069,7 @@ with tabs[2]:
     with p1:
         fig = px.bar(chart_data, x='指标', y=['本期', '对比期'], barmode='group',
                      color_discrete_sequence=['#D4AF37', '#f59e0b'])
-        fig.update_layout(height=350, template='plotly_dark', title='核心指标对比', legend_title='时间段')
+        fig.update_layout(height=350, template=PLOTLY_TEMPLATE, title='核心指标对比', legend_title='时间段')
         st.plotly_chart(fig, width="stretch")
         _render_download_panel(chart_data, ['指标', '本期', '对比期'], 'period_core_compare.csv', '📥 核心指标对比')
     with p2:
@@ -3998,7 +4082,7 @@ with tabs[2]:
         colors = ['#22c55e' if x['变化率'] >= 0 else '#ef4444' for x in ch_data]
         fig = go.Figure(go.Bar(x=[x['指标'] for x in ch_data], y=[x['变化率'] for x in ch_data],
                                 marker_color=colors))
-        fig.update_layout(height=350, template='plotly_dark', title='各指标变化率', yaxis_tickformat='.1%')
+        fig.update_layout(height=350, template=PLOTLY_TEMPLATE, title='各指标变化率', yaxis_tickformat='.1%')
         st.plotly_chart(fig, width="stretch")
         _render_download_panel(ch_data, ['指标', '变化率'], 'period_change_rate.csv', '📥 各指标变化率')
 
@@ -5070,7 +5154,7 @@ with tabs[3]:
                                   name='支付金额(万)', marker_color='#D4AF37', opacity=0.85))
             fig.add_trace(go.Scatter(x=[r['周期'] for r in tr_data], y=[r['访客数'] for r in tr_data],
                                       name='访客数', yaxis='y2', line=dict(color='#06b6d4', width=2)))
-        fig.update_layout(height=350, template='plotly_dark', legend=dict(orientation='h'),
+        fig.update_layout(height=350, template=PLOTLY_TEMPLATE, legend=dict(orientation='h'),
                         yaxis_title='支付金额(万)', yaxis2=dict(title='访客数', overlaying='y', side='right'))
         st.plotly_chart(fig, width="stretch")
         _render_download_panel(tr_data, ['周期','支付金额','访客数','转化率','加购率'], 'trend_amt_vs_vis.csv', '📥 趋势：金额/访客')
@@ -5081,7 +5165,7 @@ with tabs[3]:
                                       name='支付转化率(%)', line=dict(color='#22c55e', width=2)))
             fig.add_trace(go.Scatter(x=[r['周期'] for r in tr_data], y=[r['加购率'] * 100 for r in tr_data],
                                       name='加购率(%)', line=dict(color='#f59e0b', width=2)))
-        fig.update_layout(height=350, template='plotly_dark', legend=dict(orientation='h'), yaxis_title='比率(%)')
+        fig.update_layout(height=350, template=PLOTLY_TEMPLATE, legend=dict(orientation='h'), yaxis_title='比率(%)')
         st.plotly_chart(fig, width="stretch")
         _render_download_panel(tr_data, ['周期','支付金额','访客数','转化率','加购率'], 'trend_rate.csv', '📥 趋势：转化率/加购率')
 
@@ -5116,7 +5200,7 @@ with tabs[3]:
         ly_data = [_all_ym_agg.get(month_shift(r['月份'], -12), {}).get('支付金额', 0) for r in _yoy_monthly]
         fig.add_trace(go.Scatter(x=[r['月份'] for r in _yoy_monthly], y=[_wan(v) for v in ly_data],
                                   name='去年同期金额', line=dict(color='#f59e0b', width=2, dash='dash')))
-        fig.update_layout(height=380, template='plotly_dark', legend=dict(orientation='h'), yaxis_title='支付金额(万)')
+        fig.update_layout(height=380, template=PLOTLY_TEMPLATE, legend=dict(orientation='h'), yaxis_title='支付金额(万)')
         st.plotly_chart(fig, width="stretch")
 
     st.markdown('---')
@@ -5169,7 +5253,7 @@ with tabs[3]:
         fig.update_layout(
             title='各星期日均支付金额与转化率',
             height=380,
-            template='plotly_dark',
+            template=PLOTLY_TEMPLATE,
             legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1),
             yaxis=dict(title='支付金额（万元）', side='left', showgrid=True),
             yaxis2=dict(title='转化率（%）', side='right', overlaying='y', showgrid=False),
