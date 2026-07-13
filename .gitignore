@@ -1,11 +1,11 @@
-__pycache__/
+!data/*.pkl.gz
+# data/ 目录：xlsx 由同步按钮通过 API 推送
+# 允许压缩pickle提交到仓库
+# 本地临时缓存（不提交）
+# 裸 .pkl 不提交（太大），但 .pkl.gz 压缩版提交到仓库（云端加速启动）
+.data_cache/
 .workbuddy/
 NUL
-# 本地临时缓存（不提交）
-.data_cache/
-# data/ 目录：xlsx 由同步按钮通过 API 推送
-# 裸 .pkl 不提交（太大），但 .pkl.gz 压缩版提交到仓库（云端加速启动）
+__pycache__/
 data/*.pkl
 data/*.xlsx.bak
-# 允许压缩pickle提交到仓库
-!data/*.pkl.gz
