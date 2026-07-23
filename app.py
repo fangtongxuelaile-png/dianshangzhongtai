@@ -839,18 +839,13 @@ with st.sidebar:
             st.session_state[_k] = ''
         st.rerun()
 
-# ── PromoRow: 内存优化的推广数据行（__slots__ 替代 dict，节省 ~60% 内存）──
-class _PromoRow:
-    """用 __slots__ 替代 dict 存储推广数据，内存从 312MB → 129MB。
+# ── PromoRow: 内存优化的推广数据行（dict 子类，兼容 pickle 序列化）──
+class _PromoRow(dict):
+    """用 dict 子类存储推广数据，保持与原有 dict.get() 的完全兼容。
     
-    通过 get(key, default) 方法保持与原有 dict.get() 的完全兼容，
+    同时通过 __getattr__ 支持属性访问，保持代码风格一致。
     所有现有代码无需修改。
     """
-    __slots__ = ('_date','_shop','_channel','_cat','_model','_scene',
-                 '_spend','_impress','_clicks','_total_amt','_direct_amt',
-                 '_indirect_amt','_cart','_cust','_total_orders',
-                 '_direct_orders','_roi')
-    
     # 中文 key → 内部属性名映射（兼容 r.get('_花费', 0)）
     _KEY_MAP = {
         '_date': '_date', '_店铺': '_shop', '_渠道': '_channel',
@@ -861,11 +856,14 @@ class _PromoRow:
         '_成交客户数': '_cust', '_总成交订单量': '_total_orders',
         '_直接订单量': '_direct_orders', '_投产比': '_roi',
     }
+    # 反向映射：属性名 → 中文 key
+    _ATTR_MAP = {v: k for k, v in _KEY_MAP.items()}
 
     def __init__(self, date='', shop='', channel='', cat='', model='', scene='',
                  spend=0.0, impress=0.0, clicks=0.0, total_amt=0.0, direct_amt=0.0,
                  indirect_amt=0.0, cart=0.0, cust=0.0, total_orders=0.0,
                  direct_orders=0.0, roi=0.0):
+        super().__init__()
         self._date = date
         self._shop = shop
         self._channel = channel
@@ -884,23 +882,36 @@ class _PromoRow:
         self._direct_orders = direct_orders
         self._roi = roi
 
-    def get(self, key, default=None):
-        """兼容 dict.get() 风格访问: r.get('_花费', 0)"""
-        attr = self._KEY_MAP.get(key)
-        if attr is None:
-            return default
-        return getattr(self, attr, default)
+    def __getattr__(self, name):
+        """支持属性访问: row._date, row._spend 等"""
+        if name in self._ATTR_MAP:
+            return self.get(self._ATTR_MAP[name], 0)
+        raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+
+    def __setattr__(self, name, value):
+        """属性设置时同步更新 dict 内容"""
+        if name.startswith('_') and name in self._ATTR_MAP:
+            super().__setitem__(self._ATTR_MAP[name], value)
+        super().__setattr__(name, value)
+
+    def __getstate__(self):
+        """支持 pickle 序列化"""
+        return dict(self)
+
+    def __setstate__(self, state):
+        """支持 pickle 反序列化"""
+        self.update(state)
 
     def __repr__(self):
         return f'_PromoRow(date={self._date}, shop={self._shop})'
 
+    # dict 原生支持 pickle，无需额外方法
 
-@st.cache_data(show_spinner=False)
+
 def load_data(file_bytes: bytes):
     return parse_sales_workbook(file_bytes)
 
 
-@st.cache_data(show_spinner=False)
 def load_promo_data(file_bytes: bytes):
     """解析 京东推广数据源 + 天猫推广数据源 sheets → list[_PromoRow]
     
@@ -2031,7 +2042,8 @@ def _render_download_panel(data_rows, columns, file_name, panel_label='📥 下�
 
 
 # 当前筛选数据（合并 daily + daily_all_filtered 为一次遍历）
-@st.cache_data(show_spinner=False, ttl=300, hash_funcs={list: lambda x: str(x)[:200]})
+# 注意：由于 _PromoRow 在 Streamlit Cloud 的 st.cache_data 中序列化不稳定，
+# 这里不再缓存，每次 rerun 直接计算，牺牲少量性能换取稳定性。
 def _compute_totals_and_promo(s_key, e_key, ch_key, st_key, cat_key, mdl_key):
     """缓存全局汇总计算：totals + promo_* 系列变量。
     基于筛选器参数作为 cache key，筛选器变化时自动重新计算。
@@ -2098,7 +2110,7 @@ def _promo_yoy_rows(date_range_start, date_range_end):
         out.append(r)
     return out
 
-@st.cache_data(show_spinner=False, ttl=300)
+# 推广环比/同比汇总计算（不再缓存，避免 _PromoRow 序列化问题）
 def _compute_promo_comparison(ps, pe, ys, ye, ch_key, st_key, cat_key, mdl_key, _version=1):
     """缓存推广环比和同比的汇总计算，避免每次 rerun 遍历全量 promo_rows
     
